@@ -21,4 +21,5 @@ module.exports = {
   bracketSpacing: true,
   bracketSameLine: false,
   arrowParens: 'always',
+  avoidEscape: true,
 };
