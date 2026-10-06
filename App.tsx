@@ -1,10 +1,4 @@
-import {
-  StyleSheet,
-  useColorScheme,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import { StyleSheet, useColorScheme, View, Text, StatusBar } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 function App() {
