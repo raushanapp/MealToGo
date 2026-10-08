@@ -22,7 +22,7 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "*.ts", "*.tsx"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "*.ts", "*.tsx", "src/**/*.d.ts"],
   "exclude": ["node_modules", "android", "ios"]
 }
 
