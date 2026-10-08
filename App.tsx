@@ -1,7 +1,7 @@
 import React from 'react';
 import { useColorScheme, StatusBar } from 'react-native';
 import { PaperProvider } from 'react-native-paper';
-import { RestaurantsScreen } from './src/screens/restaurants.screen';
+import { RestaurantsScreen } from '@/screens/restaurants.screen';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, StyleSheet } from 'react-native';
+import styled from 'styled-components/native';
 import { Card } from 'react-native-paper';
 
 interface RestaurantsInfoCardProps {
@@ -11,6 +11,21 @@ interface RestaurantsInfoCardProps {
   rating?: number;
   isClosedTemporarily?: boolean;
 }
+
+const RestaurantCard = styled(Card)`
+  background-color: white;
+`;
+
+const RestaurantCardCover = styled(Card.Cover)`
+  padding: 20px;
+  height: 230px;
+  background-color: white;
+`;
+
+const Title = styled.Text`
+  padding: 16px;
+  color: red;
+`;
 
 export const RestaurantsInfoCard: React.FC<{ restaurant: RestaurantsInfoCardProps }> = ({
   restaurant = {},
@@ -28,22 +43,9 @@ export const RestaurantsInfoCard: React.FC<{ restaurant: RestaurantsInfoCardProp
   } = restaurant;
   const singlePhoto = photos[0];
   return (
-    <Card elevation={5} style={styles.card}>
-      <Card.Cover key={name} source={{ uri: singlePhoto }} style={styles.cover} />
-      <Text style={styles.title}>{name}</Text>
-    </Card>
+    <RestaurantCard elevation={5}>
+      <RestaurantCardCover key={name} source={{ uri: singlePhoto }} />
+      <Title>{name}</Title>
+    </RestaurantCard>
   );
 };
-
-const styles = StyleSheet.create({
-  card: {
-    backgroundColor: 'white',
-  },
-  cover: {
-    padding: 20,
-    height: 220,
-    width: '100%',
-    backgroundColor: 'white',
-  },
-  title: { padding: 16 },
-});
