@@ -1,8 +1,14 @@
+import { Platform } from 'react-native';
+
+// iOS resolves fonts by PostScript name; Android by file name (react-native-asset renames `-` to `_`).
+const oswald = Platform.select({ ios: 'Oswald-Regular', default: 'Oswald_Regular' });
+const lato = Platform.select({ ios: 'Lato-Regular', default: 'Lato_Regular' });
+
 export const fonts = {
-  body: 'Oswald_400Regular',
-  heading: 'Lato_400Regular',
-  monospace: 'Oswald_400Regular',
-} as const;
+  body: oswald,
+  heading: lato,
+  monospace: oswald,
+};
 
 export const fontWeights = {
   regular: 400,
