@@ -14,7 +14,6 @@ const SearchContainer = styled.View`
 `;
 const RestaurantsListContainer = styled.View`
   flex: 1;
-  background-color: blue;
   padding: ${(props) => props.theme.space[3]};
 `;
 
