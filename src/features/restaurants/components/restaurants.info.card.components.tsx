@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { Card } from 'react-native-paper';
-import { Text } from 'react-native';
+import { Text, Image } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import star from '../../../../assets/svg/star';
+import open from '../../../../assets/svg/open';
+import { Spacer } from '@/components/spacer/spacer.components';
 
 interface RestaurantsInfoCardProps {
   name?: string;
@@ -21,7 +23,6 @@ const RestaurantCard = styled(Card)`
 
 const RestaurantCardCover = styled(Card.Cover)`
   padding: ${(props) => props.theme.space[3]};
-  height: 230px;
   background-color: ${(props) => props.theme.colors.bg.primary};
 `;
 
@@ -44,20 +45,38 @@ const Address = styled(Text)`
   font-family: ${(props) => props.theme.fonts.body};
   font-size: ${(props) => props.theme.fontSizes.caption};
 `;
+const Section = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+const SectionEnd = styled.View`
+  flex: 1;
+  flex-direction: row;
+  justify-content: flex-end;
+`;
+
+const Open = styled(SvgXml)`
+  flex-direction: row;
+`;
+const ClosedTemporarily = styled(Text)`
+  color: ${(props) => props.theme.colors.ui.error};
+  font-family: ${(props) => props.theme.fonts.body};
+  font-size: ${(props) => props.theme.fontSizes.caption};
+`;
 
 export const RestaurantsInfoCard: React.FC<{ restaurant: RestaurantsInfoCardProps }> = ({
   restaurant = {},
 }) => {
   const {
     name = 'Some Restaurant',
-    icon,
+    icon = 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png',
     photos = [
       'https://img.magnific.com/free-photo/turkish-stuffed-eggplants-with-ground-beef-vegetables-baked-with-tomato-sauce_2829-11002.jpg?t=st=1791439593~exp=1791443193~hmac=ac8e56773e94888aa3e8a444c34789e89a20d937a1b28d87b2e5dca4635a7dc1&w=2000',
     ],
     address = '100 some random street',
     isOpenNow = true,
     rating = 4,
-    isClosedTemporarily,
+    isClosedTemporarily = true,
   } = restaurant;
   const ratingArray = Array.from(new Array(Math.floor(rating)));
 
@@ -66,11 +85,20 @@ export const RestaurantsInfoCard: React.FC<{ restaurant: RestaurantsInfoCardProp
       <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
       <Info>
         <Title>{name}</Title>
-        <Rating>
-          {ratingArray.map((_, index) => (
-            <SvgXml key={`star-${index}`} xml={star} width={20} height={20} />
-          ))}
-        </Rating>
+        <Section>
+          <Rating>
+            {ratingArray.map((_, index) => (
+              <SvgXml key={`star-${index}`} xml={star} width={20} height={20} />
+            ))}
+          </Rating>
+          <SectionEnd>
+            {isClosedTemporarily && <ClosedTemporarily>CLOSED TEMPORARILY</ClosedTemporarily>}
+            <Spacer size="left.large" />
+            {isOpenNow && <Open xml={open} width={20} height={20} />}
+            <Spacer size="left.large" />
+            <Image source={{ uri: icon }} style={{ width: 20, height: 20 }} />
+          </SectionEnd>
+        </Section>
         <Address>{address}</Address>
       </Info>
     </RestaurantCard>
