@@ -1,46 +1,33 @@
-import React from 'react';
-import { View } from 'react-native';
+import { Theme } from '@/infrastructure/theme';
 import styled from 'styled-components/native';
 
-const TopSmall = styled(View)`
-  margin-top: ${(props) => props.theme.space[1]};
-`;
-const TopMedium = styled(View)`
-  margin-top: ${(props) => props.theme.space[2]};
-`;
-const TopLarge = styled(View)`
-  margin-top: ${(props) => props.theme.space[3]};
-`;
+const sizesVariant = {
+  small: 1,
+  medium: 2,
+  large: 3,
+};
 
-const LeftSmall = styled(View)`
-  margin-left: ${(props) => props.theme.space[1]};
-`;
-const LeftMedium = styled(View)`
-  margin-left: ${(props) => props.theme.space[2]};
-`;
-const LeftLarge = styled(View)`
-  margin-left: ${(props) => props.theme.space[3]};
-`;
+const positionsVariant = {
+  top: 'marginTop',
+  bottom: 'marginBottom',
+  left: 'marginLeft',
+  right: 'marginRight',
+};
+
+type SpacerPosition = keyof typeof positionsVariant;
+type SpacerSize = keyof typeof sizesVariant;
 
 interface SpacerProps {
-  size?: 'top.small' | 'top.medium' | 'top.large' | 'left.small' | 'left.medium' | 'left.large';
+  position?: SpacerPosition;
+  sizes?: SpacerSize;
 }
 
-export const Spacer: React.FC<SpacerProps> = ({ size = 'top.small' }) => {
-  switch (size) {
-    case 'top.small':
-      return <TopSmall />;
-    case 'top.medium':
-      return <TopMedium />;
-    case 'top.large':
-      return <TopLarge />;
-    case 'left.small':
-      return <LeftSmall />;
-    case 'left.medium':
-      return <LeftMedium />;
-    case 'left.large':
-      return <LeftLarge />;
-    default:
-      return <TopSmall />;
-  }
+const getVariant = (position: SpacerPosition, sizes: SpacerSize, theme: Theme) => {
+  const property = positionsVariant[position];
+  const sizeIndex = sizesVariant[sizes];
+  return `${property}: ${theme.space[sizeIndex]};`;
 };
+
+export const Spacer = styled.View<SpacerProps>`
+  ${({ position = 'top', sizes = 'small', theme }) => getVariant(position, sizes, theme)}
+`;

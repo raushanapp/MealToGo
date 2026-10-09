@@ -93,10 +93,12 @@ export const RestaurantsInfoCard: React.FC<{ restaurant: RestaurantsInfoCardProp
           </Rating>
           <SectionEnd>
             {isClosedTemporarily && <ClosedTemporarily>CLOSED TEMPORARILY</ClosedTemporarily>}
-            <Spacer size="left.large" />
-            {isOpenNow && <Open xml={open} width={20} height={20} />}
-            <Spacer size="left.large" />
-            <Image source={{ uri: icon }} style={{ width: 20, height: 20 }} />
+            <Spacer sizes="large" position="left">
+              {isOpenNow && <Open xml={open} width={20} height={20} />}
+            </Spacer>
+            <Spacer sizes="large" position="left">
+              <Image source={{ uri: icon }} style={{ width: 20, height: 20 }} />
+            </Spacer>
           </SectionEnd>
         </Section>
         <Address>{address}</Address>
