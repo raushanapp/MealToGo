@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { Card } from 'react-native-paper';
-import { Text, Image } from 'react-native';
+import { Text } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import star from '../../../../assets/svg/star';
 import open from '../../../../assets/svg/open';
@@ -29,7 +29,6 @@ const RestaurantCardCover = styled(Card.Cover)`
 const Title = styled.Text`
   font-family: ${(props) => props.theme.fonts.heading};
   font-size: ${(props) => props.theme.fontSizes.body};
-
   color: ${(props) => props.theme.colors.ui.primary};
 `;
 
@@ -62,6 +61,11 @@ const ClosedTemporarily = styled(Text)`
   color: ${(props) => props.theme.colors.ui.error};
   font-family: ${(props) => props.theme.fonts.body};
   font-size: ${(props) => props.theme.fontSizes.caption};
+`;
+
+const ClosedIcons = styled.Image`
+  width: 20px;
+  height: 20px;
 `;
 
 export const RestaurantsInfoCard: React.FC<{ restaurant: RestaurantsInfoCardProps }> = ({
@@ -97,7 +101,7 @@ export const RestaurantsInfoCard: React.FC<{ restaurant: RestaurantsInfoCardProp
               {isOpenNow && <Open xml={open} width={20} height={20} />}
             </Spacer>
             <Spacer sizes="large" position="left">
-              <Image source={{ uri: icon }} style={{ width: 20, height: 20 }} />
+              <ClosedIcons source={{ uri: icon }} />
             </Spacer>
           </SectionEnd>
         </Section>
