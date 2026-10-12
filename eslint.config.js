@@ -36,18 +36,19 @@ export default [
   {
     ignores: ['node_modules/**', 'android/**', 'ios/**', 'build/**', 'dist/**'],
   },
+
   js.configs.recommended,
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
+
   {
     files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+
     languageOptions: {
       globals: {
         ...globals.browser,
         ...globals.node,
         __DEV__: 'readonly',
-        __dirname: 'readonly',
-        __filename: 'readonly',
       },
       ecmaVersion: 'latest',
       sourceType: 'module',
@@ -55,10 +56,12 @@ export default [
         ecmaFeatures: { jsx: true },
       },
     },
+
     plugins: {
       'react-hooks': pluginReactHooks,
       'react-native': pluginReactNative,
     },
+
     rules: {
       // React Native
       'react-native/no-unused-styles': 'error',
@@ -69,7 +72,7 @@ export default [
 
       // React Hooks
       'react-hooks/rules-of-hooks': 'error',
-      'react-hooks/exhaustive-deps': 'off', // Disabled for ESLint 9 compatibility
+      'react-hooks/exhaustive-deps': 'off',
 
       // React
       'react/react-in-jsx-scope': 'off',
@@ -85,6 +88,7 @@ export default [
       'no-duplicate-imports': 'error',
       'max-lines': ['warn', { max: 300, skipBlankLines: true }],
     },
+
     settings: {
       react: { version: 'detect' },
     },
