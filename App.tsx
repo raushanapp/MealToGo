@@ -1,9 +1,9 @@
-import React from 'react';
-import { useColorScheme, StatusBar } from 'react-native';
-import { PaperProvider } from 'react-native-paper';
-import { RestaurantsScreen } from '@/screens/restaurants.screen';
-import { ThemeProvider } from 'styled-components/native';
 import { theme } from '@/infrastructure/theme';
+import { ApplicationNavigations } from '@/navigation/application.navigations';
+import React from 'react';
+import { StatusBar, useColorScheme } from 'react-native';
+import { PaperProvider } from 'react-native-paper';
+import { ThemeProvider } from 'styled-components/native';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -13,7 +13,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <PaperProvider>
           <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-          <RestaurantsScreen />
+          <ApplicationNavigations />
         </PaperProvider>
       </ThemeProvider>
     </>

@@ -11,10 +11,11 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "type-check": "tsc --noEmit",
-    "prettier": "prettier --write .",
-    "prettier:check": "prettier --check .",
+    "prettier": "prettier --check .",
+    "format:fix": "prettier --write . && eslint . --fix",
     "format": "prettier --write . && eslint . --fix",
-    "prepare": "husky install"
+    "prepare": "husky",
+    "android-build": "cd android && ./gradlew assembleRelease"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -25,12 +26,20 @@
   "dependencies": {
     "@react-native-vector-icons/material-design-icons": "^13.1.4",
     "@react-native/new-app-screen": "0.87.0",
+    "@react-navigation/bottom-tabs": "^7.20.0",
+    "@react-navigation/elements": "^2.9.44",
+    "@react-navigation/native": "^7.5.0",
+    "@react-navigation/native-stack": "^7.20.0",
     "css-to-react-native": "^3.2.0",
     "react": "19.2.3",
     "react-native": "0.87.0",
+    "react-native-gesture-handler": "^3.3.0",
     "react-native-paper": "^5.15.3",
+    "react-native-reanimated": "^4.7.1",
     "react-native-safe-area-context": "^5.5.2",
+    "react-native-screens": "^4.29.0",
     "react-native-svg": "^15.15.5",
+    "react-native-worklets": "^0.13.0",
     "styled-components": "^6.5.3"
   },
   "devDependencies": {
