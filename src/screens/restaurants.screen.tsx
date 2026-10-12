@@ -20,8 +20,9 @@ interface RestaurantItem {
 
 const RestaurantsList = styled(FlatList<RestaurantItem>).attrs({
   contentContainerStyle: {
-    padding: 16,
+    paddingBottom: 16,
   },
+  showsVerticalScrollIndicator: false,
 })`
   padding: ${(props) => props.theme.space[3]};
 `;
@@ -35,7 +36,7 @@ export const RestaurantsScreen = () => {
           <SearchBar searchQuery={searchQuery} onChangeSearch={setSearchQuery} />
         </SearchContainer>
         <RestaurantsList
-          data={[{ id: '1' }, { id: '2' }, { id: '3' }]}
+          data={[{ id: '1' }, { id: '2' }, { id: '3' }, { id: '4' }]}
           renderItem={() => (
             <>
               <Spacer position="bottom" sizes={'large'}>
