@@ -1,55 +1,57 @@
 import { MapScreen } from '@/screens/map.screen';
 import { RestaurantsScreen } from '@/screens/restaurants.screen';
 import { SettingsScreen } from '@/screens/setting.screen';
-import MaterialDesignIcons from '@react-native-vector-icons/material-design-icons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeBottomTabNavigator } from '@react-navigation/bottom-tabs/unstable';
 import React from 'react';
-import { Easing } from 'react-native';
+import { Platform } from 'react-native';
 import { BottomNavigationTabsParamList } from './bottom.navigation.tabs.type';
 
-const BottomTab = createBottomTabNavigator<BottomNavigationTabsParamList>();
-type IconName = React.ComponentProps<typeof MaterialDesignIcons>['name'];
+const BottomTab = createNativeBottomTabNavigator<BottomNavigationTabsParamList>();
 
-const screens: {
-  name: keyof BottomNavigationTabsParamList;
-  component: React.ComponentType;
-  icon: IconName;
-}[] = [
-  { name: 'Restaurants', component: RestaurantsScreen, icon: 'silverware-fork-knife' },
-  { name: 'Settings', component: SettingsScreen, icon: 'cog-outline' },
-  { name: 'Map', component: MapScreen, icon: 'map-outline' },
-];
+const screens = [
+  {
+    name: 'Restaurants',
+    component: RestaurantsScreen,
+    title: 'Restaurants',
+    iosIcon: 'fork.knife',
+    androidIcon: 'https://img.icons8.com/?size=100&id=86029&format=png&color=000000',
+  },
+  {
+    name: 'Settings',
+    component: SettingsScreen,
+    title: 'Settings',
+    iosIcon: 'gearshape',
+    androidIcon: 'https://img.icons8.com/?size=100&id=82535&format=png&color=000000',
+  },
+  {
+    name: 'Map',
+    component: MapScreen,
+    title: 'Map',
+    iosIcon: 'map',
+    androidIcon: 'https://img.icons8.com/?size=100&id=86788&format=png&color=000000',
+  },
+] as const;
 
 const BottomNavigationTabs = () => {
   return (
-    <BottomTab.Navigator
-      screenOptions={{
-        headerShown: false,
-        animation: 'fade',
-        transitionSpec: {
-          animation: 'timing',
-          config: {
-            duration: 300,
-            easing: Easing.inOut(Easing.ease),
-          },
-        },
-        tabBarStyle: {
-          // height: 65,
-          paddingTop: 6,
-          paddingBottom: 6,
-          elevation: 8,
-        },
-      }}
-    >
-      {screens.map(({ name, component, icon }) => (
+    <BottomTab.Navigator screenOptions={{ headerShown: false }}>
+      {screens.map((screen) => (
         <BottomTab.Screen
-          key={name}
-          name={name}
-          component={component}
+          key={screen.name}
+          name={screen.name}
+          component={screen.component}
           options={{
-            tabBarIcon: ({ color, size }) => (
-              <MaterialDesignIcons name={icon} color={color} size={size} />
-            ),
+            title: screen.title,
+            tabBarIcon: Platform.select({
+              ios: {
+                type: 'sfSymbol',
+                name: screen.iosIcon,
+              },
+              android: {
+                type: 'image',
+                source: { uri: screen.androidIcon },
+              },
+            }),
           }}
         />
       ))}
