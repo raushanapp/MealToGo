@@ -1,10 +1,11 @@
+import { SafeArea } from '@/components/utility/safe.area.component';
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
 
 export const SettingsScreen = () => {
   return (
-    <View>
+    <SafeArea>
       <Text>Settings Screen</Text>
-    </View>
+    </SafeArea>
   );
 };

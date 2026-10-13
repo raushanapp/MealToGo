@@ -1,5 +1,6 @@
 import SearchBar from '@/components/SearchBar';
 import { Spacer } from '@/components/spacer/spacer.components';
+import { SafeArea } from '@/components/utility/safe.area.component';
 import { RestaurantsInfoCard } from '@/features/restaurants/components/restaurants.info.card.components';
 import React from 'react';
 import { FlatList } from 'react-native';
@@ -25,7 +26,7 @@ const RestaurantsList = styled(FlatList<RestaurantItem>).attrs({
 export const RestaurantsScreen = () => {
   const [searchQuery, setSearchQuery] = React.useState('');
   return (
-    <>
+    <SafeArea>
       <SearchContainer>
         <SearchBar searchQuery={searchQuery} onChangeSearch={setSearchQuery} />
       </SearchContainer>
@@ -40,6 +41,6 @@ export const RestaurantsScreen = () => {
         )}
         keyExtractor={(item) => item.id}
       />
-    </>
+    </SafeArea>
   );
 };
