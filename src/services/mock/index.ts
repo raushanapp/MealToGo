@@ -12,11 +12,10 @@ export const mocks = {
 
 export const mockImages = [
   'https://img.magnific.com/premium-photo/food-retsoran-restaurant-menu_830198-209.jpg?w=2000',
-  'https://img.magnific.com/premium-photo/restaurant-…estaurant-menu-photos-menu_830198-1252.jpg?w=2000',
-  'https://img.magnific.com/premium-photo/karniyarik-…urkish-cuisine-top-view-copy-space_2829-14726.jpg',
-  'https://img.magnific.com/free-photo/dinner-table-w…541fca3af8e516380546eb6df9d2a5c226118e064a&w=2000',
-  'https://img.magnific.com/free-photo/restaurant-int…369eb29933a93f457ee78fa3c22fbbe62f9481b628&w=2000',
-  'https://img.magnific.com/premium-psd/luxury-bar-in…ith-city-skyline-view-night_466984-660.jpg?w=2000',
-  'https://img.magnific.com/premium-psd/luxurious-lib…iling-bookshelves-fireplace_466984-658.jpg?w=2000',
+  'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=2000&q=80',
+  'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=2000&q=80',
+  'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=2000&q=80',
+  'https://img.magnific.com/premium-photo/food-retsoran-restaurant-menu_830198-209.jpg?w=2000',
+  'https://img.magnific.com/premium-psd/luxury-indoor-swimming-pool-hotel-spa_437076-843.jpg?w=2000',
   'https://img.magnific.com/premium-psd/luxury-indoor-swimming-pool-hotel-spa_437076-843.jpg?w=2000',
 ];

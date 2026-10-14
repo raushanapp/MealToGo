@@ -6,6 +6,7 @@ import { RestaurantsContext } from '@/services/restaurants.context';
 import type { Restaurant } from '@/services/restaurants.types';
 import React, { useContext } from 'react';
 import { FlatList } from 'react-native';
+import { ActivityIndicator, MD2Colors } from 'react-native-paper';
 import styled from 'styled-components/native';
 
 const SearchContainer = styled.View`
@@ -21,11 +22,26 @@ const RestaurantsList = styled(FlatList<Restaurant>).attrs({
   padding: ${(props) => props.theme.space[3]};
 `;
 
+const LoadingContainer = styled.View`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+`;
+
+const Loading = styled(ActivityIndicator)`
+  margin-left: -25px;
+`;
+
 export const RestaurantsScreen = () => {
   const [searchQuery, setSearchQuery] = React.useState('');
   const { restaurants, isLoading, error } = useContext(RestaurantsContext)!;
   return (
     <SafeArea>
+      {isLoading && (
+        <LoadingContainer>
+          <Loading size="large" animating={true} color={MD2Colors.red800} />
+        </LoadingContainer>
+      )}
       <SearchContainer>
         <SearchBar searchQuery={searchQuery} onChangeSearch={setSearchQuery} />
       </SearchContainer>
