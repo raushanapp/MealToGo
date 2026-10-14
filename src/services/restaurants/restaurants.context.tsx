@@ -1,6 +1,6 @@
+import { restaurantsRequest } from '@/services/restaurants/restaurants.services';
+import type { Restaurant } from '@/services/restaurants/restaurants.types';
 import React, { createContext, useEffect, useState } from 'react';
-import { restaurantsRequest } from './restaurants.services';
-import type { Restaurant } from './restaurants.types';
 
 export interface RestaurantsContextValue {
   restaurants: Restaurant[] | null;
