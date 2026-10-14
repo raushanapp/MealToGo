@@ -96,6 +96,9 @@ importers:
       '@react-native/typescript-config':
         specifier: 0.87.0
         version: 0.87.0
+      '@types/camelize':
+        specifier: ^1.0.1
+        version: 1.0.1
       '@types/jest':
         specifier: ^29.5.13
         version: 29.5.14
@@ -111,6 +114,9 @@ importers:
       babel-plugin-module-resolver:
         specifier: ^5.0.3
         version: 5.0.3
+      camelize:
+        specifier: ^1.0.1
+        version: 1.0.1
       eslint:
         specifier: ^8.19.0
         version: 8.57.1(supports-color@8.1.1)
@@ -1320,6 +1326,9 @@ packages:
 
   '@types/babel__traverse@7.28.0':
     resolution: {integrity: sha512-8PvcXf70gTDZBgt9ptxJ8elBeBjcLOAcOtoO/mPJjtji1+CdGbHgm77om1GrsPxsiE+uXIpNSK64UYaIwQXd4Q==}
+
+  '@types/camelize@1.0.1':
+    resolution: {integrity: sha512-cjq5IWLDnZjNQUffIs4dS9BqNn7wLryGwZaEGht32Qoh14tyQxV0jGo7Kus+oRciGDlAbNfKT0OgngduK8tOrA==}
 
   '@types/graceful-fs@4.1.9':
     resolution: {integrity: sha512-olP3sd1qOEe5dXTSaFvQG+02VdRXcdytWLAZsAq1PecU8uqQAhkrnbli7DagjtXKW/Bl7YJbUsa8MPcuc8LHEQ==}
@@ -5810,6 +5819,8 @@ snapshots:
   '@types/babel__traverse@7.28.0':
     dependencies:
       '@babel/types': 7.29.8
+
+  '@types/camelize@1.0.1': {}
 
   '@types/graceful-fs@4.1.9':
     dependencies:

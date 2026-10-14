@@ -52,6 +52,8 @@ const BottomNavigationTabs = () => {
                 source: { uri: screen.androidIcon },
               },
             }),
+            tabBarActiveTintColor: 'tomato',
+            tabBarInactiveTintColor: 'gray',
           }}
         />
       ))}

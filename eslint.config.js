@@ -1,30 +1,3 @@
-// module.exports = {
-//   root: true,
-//   extends: '@react-native',
-
-//   plugins: ['react-native'],
-
-//   rules: {
-//     // JavaScript
-//     'no-console': ['warn', { allow: ['warn', 'error'] }],
-//     'no-debugger': 'error',
-//     'no-duplicate-imports': 'error',
-//     'prefer-const': 'error',
-//     'no-var': 'error',
-
-//     // React Native
-//     'react-native/no-inline-styles': 'warn',
-//     // Code quality
-//     'no-unreachable': 'error',
-//     'no-unexpected-multiline': 'error',
-//     'no-self-assign': 'error',
-//     'no-self-compare': 'error',
-//     'no-constant-condition': ['error', { checkLoops: false }],
-//   },
-
-//   ignorePatterns: ['node_modules/', 'android/', 'ios/', 'build/', 'dist/', 'coverage/'],
-// };
-
 import js from '@eslint/js';
 import pluginReact from 'eslint-plugin-react';
 import pluginReactHooks from 'eslint-plugin-react-hooks';
