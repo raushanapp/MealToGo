@@ -1,6 +1,6 @@
+import React from 'react';
 import { Spacer } from '@/components/spacer/spacer.components';
 import { Text } from '@/components/typography/text.component';
-import React from 'react';
 import { SvgXml } from 'react-native-svg';
 import open from '../../../../assets/svg/open';
 import star from '../../../../assets/svg/star';
@@ -45,7 +45,6 @@ export const RestaurantsInfoCard: React.FC<RestaurantsProps> = ({ restaurant = {
     isClosedTemporarily = true,
   } = restaurant;
   const ratingArray = Array.from(new Array(Math.floor(rating)));
-  console.log(restaurant);
 
   return (
     <RestaurantCard elevation={5}>

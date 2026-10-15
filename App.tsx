@@ -1,7 +1,7 @@
+import React from 'react';
 import { theme } from '@/infrastructure/theme';
 import { ApplicationNavigations } from '@/navigation/application.navigations';
 import { RestaurantsProvider } from '@/services/restaurants/restaurants.context';
-import React from 'react';
 import { StatusBar, useColorScheme } from 'react-native';
 import { PaperProvider } from 'react-native-paper';
 import { ThemeProvider } from 'styled-components/native';

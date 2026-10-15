@@ -1,10 +1,10 @@
+import React, { useContext } from 'react';
 import SearchBar from '@/components/SearchBar';
 import { Spacer } from '@/components/spacer/spacer.components';
 import { SafeArea } from '@/components/utility/safe.area.component';
 import { RestaurantsInfoCard } from '@/features/restaurants/components/restaurants.info.card.components';
 import { RestaurantsContext } from '@/services/restaurants/restaurants.context';
 import type { Restaurant } from '@/services/restaurants/restaurants.types';
-import React, { useContext } from 'react';
 import { FlatList, Platform } from 'react-native';
 import { ActivityIndicator, MD2Colors } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';

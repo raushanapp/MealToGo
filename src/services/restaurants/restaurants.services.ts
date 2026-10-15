@@ -1,5 +1,5 @@
-import type { RestaurantsResponse } from '@/services/restaurants/restaurants.types';
 import camelize from 'camelize';
+import type { RestaurantsResponse } from '@/services/restaurants/restaurants.types';
 import { mockImages, mocks } from './mock';
 
 type RawRestaurantsResponse = (typeof mocks)[keyof typeof mocks];

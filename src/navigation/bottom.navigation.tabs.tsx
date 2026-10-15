@@ -1,9 +1,9 @@
+import React from 'react';
+import { Platform } from 'react-native';
 import { MapScreen } from '@/screens/map.screen';
 import { RestaurantsScreen } from '@/screens/restaurants.screen';
 import { SettingsScreen } from '@/screens/setting.screen';
 import { createNativeBottomTabNavigator } from '@react-navigation/bottom-tabs/unstable';
-import React from 'react';
-import { Platform } from 'react-native';
 import { BottomNavigationTabsParamList } from './bottom.navigation.tabs.type';
 
 const BottomTab = createNativeBottomTabNavigator<BottomNavigationTabsParamList>();
