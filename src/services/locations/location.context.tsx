@@ -1,4 +1,12 @@
-import React, { useState, createContext, useMemo, useEffect } from 'react';
+import React, {
+  useState,
+  createContext,
+  useMemo,
+  useEffect,
+  type Dispatch,
+  type ReactNode,
+  type SetStateAction,
+} from 'react';
 import { locationRequest } from './location.service';
 export interface Location {
   lat: number;
@@ -6,15 +14,15 @@ export interface Location {
 }
 export interface LocationContextTypeValue {
   location: Location | null;
-  setLocation: React.Dispatch<React.SetStateAction<Location | null>>;
+  setLocation: Dispatch<SetStateAction<Location | null>>;
   isLoading: boolean;
   error: Error | null;
   search: (keyword: string) => void;
-  setKeyword: React.Dispatch<React.SetStateAction<string>>;
+  setKeyword: Dispatch<SetStateAction<string>>;
   keyword: string;
 }
 interface LocationContextProviderProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 const LocationContext = createContext<LocationContextTypeValue | null>(null);
 export const LocationContextProvider: React.FC<LocationContextProviderProps> = ({ children }) => {
@@ -24,7 +32,6 @@ export const LocationContextProvider: React.FC<LocationContextProviderProps> = (
   const [keyword, setKeyword] = useState<string>('San Francisco');
 
   const onSearch = async (searchKeyword: string) => {
-    setIsLoading(true);
     const normalizedKeyword = searchKeyword.trim();
     if (!normalizedKeyword) {
       setError(new Error('Please enter a location to search.'));
@@ -34,20 +41,29 @@ export const LocationContextProvider: React.FC<LocationContextProviderProps> = (
   };
 
   useEffect(() => {
-    if (!keyword.length) {
-      //    do't do anything
+    const normalizedKeyword = keyword.trim();
+    if (!normalizedKeyword) {
       return;
     }
-    locationRequest(keyword.toLocaleLowerCase())
-      .then((response) => {
-        setLocation(response);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        setError(err);
-        setIsLoading(false);
-      })
-      .finally(() => setIsLoading(false));
+    setIsLoading(true);
+    setError(null);
+    const timeoutId = setTimeout(() => {
+      locationRequest(normalizedKeyword.toLocaleLowerCase())
+        .then((response) => {
+          setLocation(response);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          setError(err);
+          setIsLoading(false);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }, 2000);
+    return () => {
+      clearTimeout(timeoutId);
+    };
   }, [keyword]);
 
   const value = useMemo<LocationContextTypeValue>(

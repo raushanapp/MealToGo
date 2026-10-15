@@ -11,13 +11,13 @@ const RestaurantsContext = createContext<RestaurantsContextValue | null>(null);
 
 export const RestaurantsProvider = ({ children }: { children: React.ReactNode }) => {
   const [restaurants, setRestaurants] = useState<Restaurant[] | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
   const { location } = useLocationContext();
 
   const retrieveRestaurants = async (location: { lat: number; lng: number } | null) => {
-    setIsLoading(true);
     if (!location) return;
+    setIsLoading(true);
     const normalizedLocationString = `${location.lat},${location.lng}`;
     setTimeout(async () => {
       try {

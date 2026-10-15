@@ -8,6 +8,7 @@ import { SafeArea } from '@/components/utility/safe.area.component';
 import { RestaurantsInfoCard } from '@/features/restaurants/components/restaurants.info.card.components';
 import type { Restaurant } from '@/services/restaurants/restaurants.types';
 import { Search } from '@/features/restaurants/components/search.component';
+import { useLocationContext } from '@/services/locations/location.context';
 import { useRestaurantsContext } from '@/services/restaurants/restaurants.context';
 
 const RestaurantsList = styled(FlatList<Restaurant>).attrs({
@@ -27,7 +28,9 @@ const Loading = styled(ActivityIndicator)`
 `;
 
 export const RestaurantsScreen = () => {
-  const { restaurants, isLoading, error } = useRestaurantsContext();
+  const { restaurants, isLoading: restaurantsLoading, error } = useRestaurantsContext();
+  const { isLoading: locationLoading } = useLocationContext();
+  const isLoading = restaurantsLoading || locationLoading;
   const insets = useSafeAreaInsets();
   const listContentStyle = {
     paddingBottom: Platform.OS === 'android' ? insets.bottom + 88 : 16,
