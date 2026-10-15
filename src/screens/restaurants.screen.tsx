@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { FlatList, Platform } from 'react-native';
+import styled from 'styled-components/native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { ActivityIndicator, MD2Colors } from 'react-native-paper';
 import SearchBar from '@/components/SearchBar';
 import { Spacer } from '@/components/spacer/spacer.components';
 import { SafeArea } from '@/components/utility/safe.area.component';
 import { RestaurantsInfoCard } from '@/features/restaurants/components/restaurants.info.card.components';
-import { RestaurantsContext } from '@/services/restaurants/restaurants.context';
 import type { Restaurant } from '@/services/restaurants/restaurants.types';
-import { FlatList, Platform } from 'react-native';
-import { ActivityIndicator, MD2Colors } from 'react-native-paper';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import styled from 'styled-components/native';
+import { useRestaurantsContext } from '@/services/restaurants/restaurants.context';
 
 const SearchContainer = styled.View`
   padding: ${(props) => props.theme.space[3]};
@@ -32,7 +32,7 @@ const Loading = styled(ActivityIndicator)`
 
 export const RestaurantsScreen = () => {
   const [searchQuery, setSearchQuery] = React.useState('');
-  const { restaurants, isLoading, error } = useContext(RestaurantsContext)!;
+  const { restaurants, isLoading, error } = useRestaurantsContext();
   const insets = useSafeAreaInsets();
   const listContentStyle = {
     paddingBottom: Platform.OS === 'android' ? insets.bottom + 88 : 16,

@@ -2,6 +2,7 @@ import React from 'react';
 import { theme } from '@/infrastructure/theme';
 import { ApplicationNavigations } from '@/navigation/application.navigations';
 import { RestaurantsProvider } from '@/services/restaurants/restaurants.context';
+import { LocationContextProvider } from '@/services/locations/location.context';
 import { StatusBar, useColorScheme } from 'react-native';
 import { PaperProvider } from 'react-native-paper';
 import { ThemeProvider } from 'styled-components/native';
@@ -12,10 +13,12 @@ function App() {
     <>
       <ThemeProvider theme={theme}>
         <RestaurantsProvider>
-          <PaperProvider>
-            <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-            <ApplicationNavigations />
-          </PaperProvider>
+          <LocationContextProvider>
+            <PaperProvider>
+              <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+              <ApplicationNavigations />
+            </PaperProvider>
+          </LocationContextProvider>
         </RestaurantsProvider>
       </ThemeProvider>
     </>
