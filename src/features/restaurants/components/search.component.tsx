@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import SearchBar from '@/components/SearchBar';
 import { useLocationContext } from '@/services/locations/location.context';
@@ -10,9 +10,6 @@ export const Search = () => {
   const { keyword, search } = useLocationContext();
   const [searchKeyword, setSearchKeyword] = useState<string>(keyword);
 
-  useEffect(() => {
-    search(searchKeyword);
-  }, [searchKeyword]);
   return (
     <SearchContainer>
       <SearchBar

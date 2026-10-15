@@ -24,6 +24,7 @@ interface RestaurantsInfoCardProps {
   rating?: number;
   isClosedTemporarily?: boolean;
   images?: string[];
+  placeId?: string;
 }
 interface RestaurantsProps {
   restaurant: RestaurantsInfoCardProps;
@@ -43,6 +44,7 @@ export const RestaurantsInfoCard: React.FC<RestaurantsProps> = ({ restaurant = {
     isOpenNow = true,
     rating = 4,
     isClosedTemporarily = true,
+    placeId,
   } = restaurant;
   const ratingArray = Array.from(new Array(Math.floor(rating)));
 
@@ -54,7 +56,7 @@ export const RestaurantsInfoCard: React.FC<RestaurantsProps> = ({ restaurant = {
         <Section>
           <Rating>
             {ratingArray.map((_, index) => (
-              <SvgXml key={`star-${index}`} xml={star} width={20} height={20} />
+              <SvgXml key={`star-${placeId}-${index}`} xml={star} width={20} height={20} />
             ))}
           </Rating>
           <SectionEnd>

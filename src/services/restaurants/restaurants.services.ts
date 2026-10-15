@@ -12,6 +12,7 @@ const restaurantsTransform = (result: RawRestaurantsResponse): RestaurantsRespon
     return {
       ...restaurant,
       images: images,
+      address: restaurant.vicinity,
       isOpenNow: restaurant.opening_hours?.open_now,
       isClosedTemporarily: restaurant.business_status === 'CLOSED_TEMPORARILY',
     };

@@ -1,4 +1,4 @@
-import React, { useState, createContext, useMemo } from 'react';
+import React, { useState, createContext, useMemo, useEffect } from 'react';
 import { locationRequest } from './location.service';
 export interface Location {
   lat: number;
@@ -25,14 +25,20 @@ export const LocationContextProvider: React.FC<LocationContextProviderProps> = (
 
   const onSearch = async (searchKeyword: string) => {
     setIsLoading(true);
-    // if (!searchKeyword.length) return;
     const normalizedKeyword = searchKeyword.trim();
     if (!normalizedKeyword) {
       setError(new Error('Please enter a location to search.'));
       return;
     }
     setKeyword(normalizedKeyword);
-    locationRequest(normalizedKeyword.toLocaleLowerCase())
+  };
+
+  useEffect(() => {
+    if (!keyword.length) {
+      //    do't do anything
+      return;
+    }
+    locationRequest(keyword.toLocaleLowerCase())
       .then((response) => {
         setLocation(response);
         setIsLoading(false);
@@ -42,7 +48,7 @@ export const LocationContextProvider: React.FC<LocationContextProviderProps> = (
         setIsLoading(false);
       })
       .finally(() => setIsLoading(false));
-  };
+  }, [keyword]);
 
   const value = useMemo<LocationContextTypeValue>(
     () => ({ location, setLocation, isLoading, error, search: onSearch, keyword, setKeyword }),
