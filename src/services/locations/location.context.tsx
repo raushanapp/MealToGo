@@ -1,11 +1,9 @@
 import React, { useState, createContext, useMemo } from 'react';
 import { locationRequest } from './location.service';
-
 export interface Location {
   lat: number;
   lng: number;
 }
-
 export interface LocationContextTypeValue {
   location: Location | null;
   setLocation: React.Dispatch<React.SetStateAction<Location | null>>;
@@ -15,27 +13,26 @@ export interface LocationContextTypeValue {
   setKeyword: React.Dispatch<React.SetStateAction<string>>;
   keyword: string;
 }
-
 interface LocationContextProviderProps {
   children: React.ReactNode;
 }
-
 const LocationContext = createContext<LocationContextTypeValue | null>(null);
-
 export const LocationContextProvider: React.FC<LocationContextProviderProps> = ({ children }) => {
   const [location, setLocation] = useState<Location | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
-  const [keyword, setKeyword] = useState<string>('san francisco');
+  const [keyword, setKeyword] = useState<string>('San Francisco');
 
-  const onSearch = (searchKeyword: string) => {
+  const onSearch = async (searchKeyword: string) => {
     setIsLoading(true);
-    const normalizedKeyword = searchKeyword.trim().toLowerCase();
+    // if (!searchKeyword.length) return;
+    const normalizedKeyword = searchKeyword.trim();
     if (!normalizedKeyword) {
       setError(new Error('Please enter a location to search.'));
       return;
     }
-    locationRequest(normalizedKeyword)
+    setKeyword(normalizedKeyword);
+    locationRequest(normalizedKeyword.toLocaleLowerCase())
       .then((response) => {
         setLocation(response);
         setIsLoading(false);
@@ -49,7 +46,7 @@ export const LocationContextProvider: React.FC<LocationContextProviderProps> = (
 
   const value = useMemo<LocationContextTypeValue>(
     () => ({ location, setLocation, isLoading, error, search: onSearch, keyword, setKeyword }),
-    [location, isLoading, error, onSearch, keyword],
+    [location, isLoading, error, keyword],
   );
 
   return <LocationContext.Provider value={value}>{children}</LocationContext.Provider>;

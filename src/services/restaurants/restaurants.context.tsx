@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState, useMemo, useContext } from 'react';
+import { useLocationContext } from '@/services/locations/location.context';
 import { restaurantsRequest } from '@/services/restaurants/restaurants.services';
 import type { Restaurant } from '@/services/restaurants/restaurants.types';
 export interface RestaurantsContextValue {
@@ -12,12 +13,15 @@ export const RestaurantsProvider = ({ children }: { children: React.ReactNode })
   const [restaurants, setRestaurants] = useState<Restaurant[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
+  const { location } = useLocationContext();
 
-  const retrieveRestaurants = async () => {
+  const retrieveRestaurants = async (location: { lat: number; lng: number } | null) => {
     setIsLoading(true);
+    if (!location) return;
+    const normalizedLocationString = `${location.lat},${location.lng}`;
     setTimeout(async () => {
       try {
-        const response = await restaurantsRequest();
+        const response = await restaurantsRequest(normalizedLocationString);
         setRestaurants(response?.results ?? null);
         setError(null);
       } catch (err) {
@@ -30,8 +34,10 @@ export const RestaurantsProvider = ({ children }: { children: React.ReactNode })
   };
 
   useEffect(() => {
-    retrieveRestaurants();
-  }, []);
+    if (location) {
+      retrieveRestaurants(location);
+    }
+  }, [location]);
 
   const value = useMemo<RestaurantsContextValue>(
     () => ({ restaurants, isLoading, error }),

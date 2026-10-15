@@ -12,14 +12,14 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <RestaurantsProvider>
-          <LocationContextProvider>
+        <LocationContextProvider>
+          <RestaurantsProvider>
             <PaperProvider>
               <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
               <ApplicationNavigations />
             </PaperProvider>
-          </LocationContextProvider>
-        </RestaurantsProvider>
+          </RestaurantsProvider>
+        </LocationContextProvider>
       </ThemeProvider>
     </>
   );
