@@ -32,6 +32,22 @@ const screens = [
   },
 ] as const;
 
+const createScreenOptions = (screen: (typeof screens)[number]) => ({
+  title: screen.title,
+  tabBarIcon: Platform.select({
+    ios: {
+      type: 'sfSymbol' as const,
+      name: screen.iosIcon,
+    },
+    android: {
+      type: 'image' as const,
+      source: { uri: screen.androidIcon },
+    },
+  }),
+  tabBarActiveTintColor: 'tomato',
+  tabBarInactiveTintColor: 'gray',
+});
+
 const BottomNavigationTabs = () => {
   return (
     <BottomTab.Navigator screenOptions={{ headerShown: false }}>
@@ -40,21 +56,7 @@ const BottomNavigationTabs = () => {
           key={screen.name}
           name={screen.name}
           component={screen.component}
-          options={{
-            title: screen.title,
-            tabBarIcon: Platform.select({
-              ios: {
-                type: 'sfSymbol',
-                name: screen.iosIcon,
-              },
-              android: {
-                type: 'image',
-                source: { uri: screen.androidIcon },
-              },
-            }),
-            tabBarActiveTintColor: 'tomato',
-            tabBarInactiveTintColor: 'gray',
-          }}
+          options={createScreenOptions(screen)}
         />
       ))}
     </BottomTab.Navigator>

@@ -1,11 +1,11 @@
 import React from 'react';
 import { theme } from '@/infrastructure/theme';
-import { ApplicationNavigations } from '@/navigation/application.navigations';
 import { RestaurantsProvider } from '@/services/restaurants/restaurants.context';
 import { LocationContextProvider } from '@/services/locations/location.context';
 import { StatusBar, useColorScheme } from 'react-native';
 import { PaperProvider } from 'react-native-paper';
 import { ThemeProvider } from 'styled-components/native';
+import { Navigation } from '@/infrastructure/navigation/index';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -15,12 +15,12 @@ function App() {
         <LocationContextProvider>
           <RestaurantsProvider>
             <PaperProvider>
-              <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-              <ApplicationNavigations />
+              <Navigation />
             </PaperProvider>
           </RestaurantsProvider>
         </LocationContextProvider>
       </ThemeProvider>
+      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
     </>
   );
 }
