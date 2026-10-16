@@ -1,5 +1,5 @@
 export type BottomNavigationTabsParamList = {
-  Restaurants: undefined;
+  RestaurantMainScreen: undefined;
   Settings: undefined;
   Map: undefined;
 };

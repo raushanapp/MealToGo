@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, Platform } from 'react-native';
+import { FlatList, Platform, TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ActivityIndicator, MD2Colors } from 'react-native-paper';
@@ -10,6 +10,10 @@ import type { Restaurant } from '@/services/restaurants/restaurants.types';
 import { Search } from '@/features/restaurants/components/search.component';
 import { useLocationContext } from '@/services/locations/location.context';
 import { useRestaurantsContext } from '@/services/restaurants/restaurants.context';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RestaurantsStackParamList } from '@/infrastructure/navigation/restaurants.navigators.type';
+
+type Props = NativeStackScreenProps<RestaurantsStackParamList, 'RestaurantMainScreen'>;
 
 const RestaurantsList = styled(FlatList<Restaurant>).attrs({
   showsVerticalScrollIndicator: false,
@@ -27,7 +31,7 @@ const Loading = styled(ActivityIndicator)`
   margin-left: -25px;
 `;
 
-export const RestaurantsScreen = () => {
+export const RestaurantsScreen = ({ navigation }: Props) => {
   const { restaurants, isLoading: restaurantsLoading, error } = useRestaurantsContext();
   const { isLoading: locationLoading } = useLocationContext();
   const isLoading = restaurantsLoading || locationLoading;
@@ -48,7 +52,7 @@ export const RestaurantsScreen = () => {
         contentContainerStyle={listContentStyle}
         data={restaurants ?? []}
         renderItem={({ item }) => (
-          <>
+          <TouchableOpacity onPress={() => navigation.navigate('RestaurantsDetails' as const)}>
             <Spacer position="bottom" sizes={'large'}>
               <RestaurantsInfoCard
                 restaurant={item as React.ComponentProps<typeof RestaurantsInfoCard>['restaurant']}
@@ -56,7 +60,7 @@ export const RestaurantsScreen = () => {
                 isLoading={isLoading}
               />
             </Spacer>
-          </>
+          </TouchableOpacity>
         )}
         keyExtractor={(item, index) => item.placeId ?? `${item.name ?? 'restaurant'}-${index}`}
       />

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { MapScreen } from '@/screens/map.screen';
-import { RestaurantsScreen } from '@/screens/restaurants.screen';
+import { RestaurantsNavigator } from '@/infrastructure/navigation/restaurants.navigator';
 import { SettingsScreen } from '@/screens/setting.screen';
 import { createNativeBottomTabNavigator } from '@react-navigation/bottom-tabs/unstable';
 import { BottomNavigationTabsParamList } from './bottom.navigation.tabs.type';
@@ -10,8 +10,8 @@ const BottomTab = createNativeBottomTabNavigator<BottomNavigationTabsParamList>(
 
 const screens = [
   {
-    name: 'Restaurants',
-    component: RestaurantsScreen,
+    name: 'RestaurantMainScreen',
+    component: RestaurantsNavigator,
     title: 'Restaurants',
     iosIcon: 'fork.knife',
     androidIcon: 'https://img.icons8.com/?size=100&id=86029&format=png&color=000000',
