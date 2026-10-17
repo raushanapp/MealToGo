@@ -5,7 +5,7 @@ interface SearchBarProps {
   searchQuery: string;
   onChangeSearch: (query: string) => void;
   searchPlaceholder?: string;
-  onSubmitEditing: () => void;
+  onSubmitEditing?: () => void;
 }
 
 const SearchBar = ({
