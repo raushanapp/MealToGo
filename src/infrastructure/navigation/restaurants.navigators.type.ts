@@ -1,4 +1,6 @@
 export type RestaurantsStackParamList = {
-  RestaurantMainScreen: { restaurantsID?: string };
-  RestaurantsDetails: undefined;
+  RestaurantMainScreen: undefined;
+  RestaurantsDetailsScreen: {
+    restaurant: import('@/services/restaurants/restaurants.types').Restaurant;
+  };
 };

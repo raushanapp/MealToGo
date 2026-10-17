@@ -10,10 +10,10 @@ import type { Restaurant } from '@/services/restaurants/restaurants.types';
 import { Search } from '@/features/restaurants/components/search.component';
 import { useLocationContext } from '@/services/locations/location.context';
 import { useRestaurantsContext } from '@/services/restaurants/restaurants.context';
-import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import type { StackScreenProps } from '@react-navigation/stack';
 import { RestaurantsStackParamList } from '@/infrastructure/navigation/restaurants.navigators.type';
 
-type Props = NativeStackScreenProps<RestaurantsStackParamList, 'RestaurantMainScreen'>;
+type Props = StackScreenProps<RestaurantsStackParamList, 'RestaurantMainScreen'>;
 
 const RestaurantsList = styled(FlatList<Restaurant>).attrs({
   showsVerticalScrollIndicator: false,
@@ -52,7 +52,9 @@ export const RestaurantsScreen = ({ navigation }: Props) => {
         contentContainerStyle={listContentStyle}
         data={restaurants ?? []}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => navigation.navigate('RestaurantsDetails' as const)}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('RestaurantsDetailsScreen', { restaurant: item })}
+          >
             <Spacer position="bottom" sizes={'large'}>
               <RestaurantsInfoCard
                 restaurant={item as React.ComponentProps<typeof RestaurantsInfoCard>['restaurant']}
