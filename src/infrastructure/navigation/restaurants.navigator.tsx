@@ -5,8 +5,8 @@ import {
   type StackNavigationOptions,
 } from '@react-navigation/stack';
 import { RestaurantsStackParamList } from './restaurants.navigators.type';
-import { RestaurantsScreen } from '@/screens/restaurants.screen';
-import { RestaurantsDetailsScreen } from '@/screens/restaurants.details.screen';
+import { RestaurantsScreen } from '@/features/restaurants/screens/restaurants.screen';
+import { RestaurantsDetailsScreen } from '@/features/restaurants/screens/restaurants.details.screen';
 
 const RestaurantsStack = createStackNavigator<RestaurantsStackParamList>();
 
