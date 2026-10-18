@@ -1,6 +1,6 @@
 export interface Restaurant {
   businessStatus?: string;
-  geometry: {
+  geometry?: {
     location: {
       lat: number;
       lng: number;
@@ -37,6 +37,9 @@ export interface Restaurant {
   types?: string[];
   userRatingsTotal?: number;
   vicinity?: string;
+  address?: string;
+  isOpenNow?: boolean;
+  isClosedTemporarily?: boolean;
 }
 
 export interface RestaurantsResponse {

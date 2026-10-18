@@ -46,8 +46,8 @@ export const MapScreen = ({ navigation }: Props) => {
               key={restaurant.name}
               title={restaurant.name}
               coordinate={{
-                latitude: restaurant?.geometry?.location?.lat,
-                longitude: restaurant?.geometry?.location?.lng,
+                latitude: restaurant?.geometry?.location?.lat ?? 0,
+                longitude: restaurant?.geometry?.location?.lng ?? 0,
               }}
             >
               <Callout

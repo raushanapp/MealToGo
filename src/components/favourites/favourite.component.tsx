@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { memo, useCallback } from 'react';
 import { useFavourites } from '@/services/favourites/favourites.context';
 import styled from 'styled-components/native';
 import { TouchableOpacity } from 'react-native';
 import MaterialDesignIcons from '@react-native-vector-icons/material-design-icons';
-import { RestaurantsInfoCardProps } from '@/features/restaurants/components/restaurants.info.card.components';
+import type { Restaurant } from '@/services/restaurants/restaurants.types';
 
 const FavouriteButton = styled(TouchableOpacity)`
   position: absolute;
@@ -12,16 +12,19 @@ const FavouriteButton = styled(TouchableOpacity)`
   z-index: 9;
 `;
 
-export const Favourite = ({ restaurant }: { restaurant: RestaurantsInfoCardProps }) => {
-  const { favorites, addToFavourites, removeFromFavourites } = useFavourites();
-  const isFavourite = favorites.some((fav) => fav.placeId === restaurant.placeId);
+const FavouriteComponent = ({ restaurant }: { restaurant: Restaurant }) => {
+  const { isFavourite: checkFavourite, addToFavourites, removeFromFavourites } = useFavourites();
+  const isFavourite = checkFavourite(restaurant.placeId);
+  const handlePress = useCallback(() => {
+    if (isFavourite) {
+      removeFromFavourites(restaurant);
+    } else {
+      addToFavourites(restaurant);
+    }
+  }, [isFavourite, restaurant, addToFavourites, removeFromFavourites]);
 
   return (
-    <FavouriteButton
-      onPress={() =>
-        !isFavourite ? addToFavourites(restaurant) : removeFromFavourites(restaurant)
-      }
-    >
+    <FavouriteButton onPress={handlePress}>
       <MaterialDesignIcons
         name={isFavourite ? 'heart' : 'heart-outline'}
         size={24}
@@ -30,3 +33,5 @@ export const Favourite = ({ restaurant }: { restaurant: RestaurantsInfoCardProps
     </FavouriteButton>
   );
 };
+
+export const Favourite = memo(FavouriteComponent);

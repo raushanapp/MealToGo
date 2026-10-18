@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FlatList, Platform, TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -9,9 +9,11 @@ import { RestaurantsInfoCard } from '@/features/restaurants/components/restauran
 import type { Restaurant } from '@/services/restaurants/restaurants.types';
 import { Search } from '@/features/restaurants/components/search.component';
 import { useLocationContext } from '@/services/locations/location.context';
+import { FavouritesBar } from '@/components/favourites/favourites.bar.component';
 import { useRestaurantsContext } from '@/services/restaurants/restaurants.context';
 import type { StackScreenProps } from '@react-navigation/stack';
 import { RestaurantsStackParamList } from '@/infrastructure/navigation/restaurants.navigators.type';
+import { useFavourites } from '@/services/favourites/favourites.context';
 
 type Props = StackScreenProps<RestaurantsStackParamList, 'RestaurantMainScreen'>;
 
@@ -34,40 +36,46 @@ const Loading = styled(ActivityIndicator)`
 export const RestaurantsScreen = ({ navigation }: Props) => {
   const { restaurants, isLoading: restaurantsLoading, error } = useRestaurantsContext();
   const { isLoading: locationLoading } = useLocationContext();
+  const { favourites } = useFavourites();
   const isLoading = restaurantsLoading || locationLoading;
   const insets = useSafeAreaInsets();
   const listContentStyle = {
     paddingBottom: Platform.OS === 'android' ? insets.bottom + 88 : 16,
   };
 
+  const [isToggled, setIsToggled] = useState<boolean>(false);
+
   return (
     <SafeArea>
-      <Search />
+      <Search onFavouriteToggled={() => setIsToggled(!isToggled)} isFavouriteToggled={isToggled} />
       {isLoading ? (
         <LoadingContainer>
           <Loading size="large" animating={true} color={MD2Colors.red800} />
         </LoadingContainer>
       ) : (
-        <RestaurantsList
-          contentContainerStyle={listContentStyle}
-          data={restaurants ?? []}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              onPress={() => navigation.navigate('RestaurantsDetailsScreen', { restaurant: item })}
-            >
-              <Spacer position="bottom" sizes={'large'}>
-                <RestaurantsInfoCard
-                  restaurant={
-                    item as React.ComponentProps<typeof RestaurantsInfoCard>['restaurant']
-                  }
-                  error={error?.message ?? null}
-                  isLoading={isLoading}
-                />
-              </Spacer>
-            </TouchableOpacity>
-          )}
-          keyExtractor={(item, index) => item.placeId ?? `${item.name ?? 'restaurant'}-${index}`}
-        />
+        <>
+          {isToggled && <FavouritesBar favourites={favourites ?? []} />}
+          <RestaurantsList
+            contentContainerStyle={listContentStyle}
+            data={restaurants ?? []}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate('RestaurantsDetailsScreen', { restaurant: item })
+                }
+              >
+                <Spacer position="bottom" sizes={'large'}>
+                  <RestaurantsInfoCard
+                    restaurant={item}
+                    error={error?.message ?? null}
+                    isLoading={isLoading}
+                  />
+                </Spacer>
+              </TouchableOpacity>
+            )}
+            keyExtractor={(item, index) => item.placeId ?? `${item.name ?? 'restaurant'}-${index}`}
+          />
+        </>
       )}
     </SafeArea>
   );

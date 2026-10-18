@@ -6,7 +6,12 @@ const SearchContainer = styled.View`
   padding: ${(props) => props.theme.space[3]};
 `;
 
-export const Search = () => {
+interface SearchProps {
+  onFavouriteToggled: () => void;
+  isFavouriteToggled?: boolean;
+}
+
+export const Search = ({ onFavouriteToggled, isFavouriteToggled }: SearchProps) => {
   const { keyword, search } = useLocationContext();
   const [searchKeyword, setSearchKeyword] = useState<string>(keyword);
   useEffect(() => {
@@ -16,6 +21,9 @@ export const Search = () => {
   return (
     <SearchContainer>
       <SearchBar
+        icon={isFavouriteToggled ? 'heart' : 'heart-outline'}
+        iconColor={isFavouriteToggled ? 'red' : 'black'}
+        onPressIcon={onFavouriteToggled}
         searchPlaceholder="Search for location"
         searchQuery={searchKeyword}
         onChangeSearch={(text) => {

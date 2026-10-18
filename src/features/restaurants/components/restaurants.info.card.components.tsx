@@ -14,32 +14,22 @@ import {
   Section,
   SectionEnd,
 } from './restaurants.info.card.styles';
+import type { Restaurant } from '@/services/restaurants/restaurants.types';
 import { Favourite } from '@/components/favourites/favourite.component';
 
-export interface RestaurantsInfoCardProps {
-  name?: string;
-  icon?: string;
-  photos?: string[];
-  address?: string;
-  isOpenNow?: boolean;
-  rating?: number;
-  isClosedTemporarily?: boolean;
-  images?: string[];
-  placeId?: string;
-}
+const FALLBACK_IMAGE =
+  'https://img.magnific.com/free-photo/turkish-stuffed-eggplants-with-ground-beef-vegetables-baked-with-tomato-sauce_2829-11002.jpg?t=st=1791439593~exp=1791443193~hmac=ac8e56773e94888aa3e8a444c34789e89a20d937a1b28d87b2e5dca4635a7dc1&w=2000';
+
 interface RestaurantsProps {
-  restaurant: RestaurantsInfoCardProps;
+  restaurant: Restaurant;
   error?: string | null;
   isLoading?: boolean;
 }
 
-export const RestaurantsInfoCard: React.FC<RestaurantsProps> = ({ restaurant = {} }) => {
+export const RestaurantsInfoCard: React.FC<RestaurantsProps> = ({ restaurant }) => {
   const {
     name = 'Some Restaurant',
     icon = 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png',
-    photos = [
-      'https://img.magnific.com/free-photo/turkish-stuffed-eggplants-with-ground-beef-vegetables-baked-with-tomato-sauce_2829-11002.jpg?t=st=1791439593~exp=1791443193~hmac=ac8e56773e94888aa3e8a444c34789e89a20d937a1b28d87b2e5dca4635a7dc1&w=2000',
-    ],
     images,
     address = '100 some random street',
     isOpenNow = true,
@@ -52,7 +42,7 @@ export const RestaurantsInfoCard: React.FC<RestaurantsProps> = ({ restaurant = {
   return (
     <RestaurantCard elevation={5}>
       <Favourite restaurant={restaurant} />
-      <RestaurantCardCover key={name} source={{ uri: images?.[0] || photos[0] }} />
+      <RestaurantCardCover key={name} source={{ uri: images?.[0] || FALLBACK_IMAGE }} />
       <Info>
         <Text variant="label">{name}</Text>
         <Section>

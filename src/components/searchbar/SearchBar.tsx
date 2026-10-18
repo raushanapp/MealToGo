@@ -7,6 +7,8 @@ interface SearchBarProps {
   searchPlaceholder?: string;
   onSubmitEditing?: () => void;
   icon?: string;
+  onPressIcon?: () => void;
+  iconColor?: string;
 }
 
 const SearchBar = ({
@@ -15,6 +17,8 @@ const SearchBar = ({
   searchPlaceholder = 'Search',
   onSubmitEditing,
   icon,
+  onPressIcon,
+  iconColor,
 }: SearchBarProps) => {
   return (
     <Searchbar
@@ -23,6 +27,8 @@ const SearchBar = ({
       value={searchQuery}
       onSubmitEditing={onSubmitEditing}
       icon={icon}
+      onIconPress={onPressIcon}
+      iconColor={iconColor}
     />
   );
 };

@@ -18,7 +18,7 @@ export const RestaurantsDetailsScreen = ({ route }: Props) => {
   return (
     <SafeArea>
       <RestaurantsInfoCard
-        restaurant={restaurant as React.ComponentProps<typeof RestaurantsInfoCard>['restaurant']}
+        restaurant={restaurant}
       />
       <ScrollView>
         <List.Accordion
