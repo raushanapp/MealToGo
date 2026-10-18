@@ -5,13 +5,18 @@ import MapView, { Marker, Callout } from 'react-native-maps';
 import { Search } from '@/features/map/components/search.component';
 import { useRestaurantsContext } from '@/services/restaurants/restaurants.context';
 import { MapCallout } from '@/features/map/components/map.callout.component';
+import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
+import { BottomNavigationTabsParamList } from '@/infrastructure/navigation/bottom.navigation.tabs.type';
 
+type Props = {
+  navigation: BottomTabNavigationProp<BottomNavigationTabsParamList, 'MapScreen'>;
+};
 const Map = styled(MapView)`
   height: 100%;
   width: 100%;
 `;
 
-export const MapScreen = () => {
+export const MapScreen = ({ navigation }: Props) => {
   const [latDelta, setLatDelta] = useState<number>(0);
   const { location } = useLocationContext();
   const { restaurants } = useRestaurantsContext();
@@ -45,7 +50,14 @@ export const MapScreen = () => {
                 longitude: restaurant?.geometry?.location?.lng,
               }}
             >
-              <Callout>
+              <Callout
+                onPress={() =>
+                  navigation.navigate('RestaurantMainScreen', {
+                    screen: 'RestaurantsDetailsScreen',
+                    params: { restaurant },
+                  })
+                }
+              >
                 <MapCallout restaurant={restaurant} />
               </Callout>
             </Marker>

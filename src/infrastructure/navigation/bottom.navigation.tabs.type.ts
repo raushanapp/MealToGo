@@ -1,5 +1,8 @@
+import type { NavigatorScreenParams } from '@react-navigation/native';
+import type { RestaurantsStackParamList } from './restaurants.navigators.type';
+
 export type BottomNavigationTabsParamList = {
-  RestaurantMainScreen: undefined;
+  RestaurantMainScreen: NavigatorScreenParams<RestaurantsStackParamList> | undefined;
   Settings: undefined;
-  Map: undefined;
+  MapScreen: undefined;
 };

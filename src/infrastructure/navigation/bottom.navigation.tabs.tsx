@@ -17,7 +17,7 @@ const screens = [
     androidIcon: 'https://img.icons8.com/?size=100&id=86029&format=png&color=000000',
   },
   {
-    name: 'Map',
+    name: 'MapScreen',
     component: MapScreen,
     title: 'Map',
     iosIcon: 'map',
