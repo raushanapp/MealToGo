@@ -14,8 +14,9 @@ import {
   Section,
   SectionEnd,
 } from './restaurants.info.card.styles';
+import { Favourite } from '@/components/favourites/favourite.component';
 
-interface RestaurantsInfoCardProps {
+export interface RestaurantsInfoCardProps {
   name?: string;
   icon?: string;
   photos?: string[];
@@ -50,6 +51,7 @@ export const RestaurantsInfoCard: React.FC<RestaurantsProps> = ({ restaurant = {
 
   return (
     <RestaurantCard elevation={5}>
+      <Favourite restaurant={restaurant} />
       <RestaurantCardCover key={name} source={{ uri: images?.[0] || photos[0] }} />
       <Info>
         <Text variant="label">{name}</Text>

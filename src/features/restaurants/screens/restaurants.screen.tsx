@@ -2,7 +2,6 @@ import React from 'react';
 import { FlatList, Platform, TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useFavourites } from '@/services/favourites/favourites.context';
 import { ActivityIndicator, MD2Colors } from 'react-native-paper';
 import { Spacer } from '@/components/spacer/spacer.components';
 import { SafeArea } from '@/components/utility/safe.area.component';
@@ -35,8 +34,6 @@ const Loading = styled(ActivityIndicator)`
 export const RestaurantsScreen = ({ navigation }: Props) => {
   const { restaurants, isLoading: restaurantsLoading, error } = useRestaurantsContext();
   const { isLoading: locationLoading } = useLocationContext();
-  const { favorites } = useFavourites();
-  // console.log(favorites);
   const isLoading = restaurantsLoading || locationLoading;
   const insets = useSafeAreaInsets();
   const listContentStyle = {
@@ -45,30 +42,33 @@ export const RestaurantsScreen = ({ navigation }: Props) => {
 
   return (
     <SafeArea>
-      {isLoading && (
+      <Search />
+      {isLoading ? (
         <LoadingContainer>
           <Loading size="large" animating={true} color={MD2Colors.red800} />
         </LoadingContainer>
+      ) : (
+        <RestaurantsList
+          contentContainerStyle={listContentStyle}
+          data={restaurants ?? []}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              onPress={() => navigation.navigate('RestaurantsDetailsScreen', { restaurant: item })}
+            >
+              <Spacer position="bottom" sizes={'large'}>
+                <RestaurantsInfoCard
+                  restaurant={
+                    item as React.ComponentProps<typeof RestaurantsInfoCard>['restaurant']
+                  }
+                  error={error?.message ?? null}
+                  isLoading={isLoading}
+                />
+              </Spacer>
+            </TouchableOpacity>
+          )}
+          keyExtractor={(item, index) => item.placeId ?? `${item.name ?? 'restaurant'}-${index}`}
+        />
       )}
-      <Search />
-      <RestaurantsList
-        contentContainerStyle={listContentStyle}
-        data={restaurants ?? []}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() => navigation.navigate('RestaurantsDetailsScreen', { restaurant: item })}
-          >
-            <Spacer position="bottom" sizes={'large'}>
-              <RestaurantsInfoCard
-                restaurant={item as React.ComponentProps<typeof RestaurantsInfoCard>['restaurant']}
-                error={error?.message ?? null}
-                isLoading={isLoading}
-              />
-            </Spacer>
-          </TouchableOpacity>
-        )}
-        keyExtractor={(item, index) => item.placeId ?? `${item.name ?? 'restaurant'}-${index}`}
-      />
     </SafeArea>
   );
 };

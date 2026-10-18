@@ -6,13 +6,13 @@ import React, {
   useCallback,
   useContext,
 } from 'react';
-import { Restaurant } from '../restaurants/restaurants.types';
+import { RestaurantsInfoCardProps } from '@/features/restaurants/components/restaurants.info.card.components';
 
 interface FavouritesProviderValueProps {
-  favorites: Restaurant[];
-  setFavourites: React.Dispatch<React.SetStateAction<Restaurant[]>>;
-  add: (restaurant: Restaurant) => void;
-  remove: (restaurant: Restaurant) => void;
+  favorites: RestaurantsInfoCardProps[];
+  setFavourites: React.Dispatch<React.SetStateAction<RestaurantsInfoCardProps[]>>;
+  addToFavourites: (restaurant: RestaurantsInfoCardProps) => void;
+  removeFromFavourites: (restaurant: RestaurantsInfoCardProps) => void;
 }
 
 interface FavouritesContextProviderProps {
@@ -22,13 +22,13 @@ interface FavouritesContextProviderProps {
 export const FavouritesContext = createContext<FavouritesProviderValueProps | null>(null);
 
 export const FavouritesProvider = ({ children }: FavouritesContextProviderProps) => {
-  const [favorites, setFavourites] = useState<Restaurant[]>([]);
-  const add = useCallback((restaurant: Restaurant) => {
+  const [favorites, setFavourites] = useState<RestaurantsInfoCardProps[]>([]);
+  const addToFavourites = useCallback((restaurant: RestaurantsInfoCardProps) => {
     setFavourites((prev) => [...prev, restaurant]);
   }, []);
 
-  const remove = useCallback(
-    (restaurant: Restaurant) => {
+  const removeFromFavourites = useCallback(
+    (restaurant: RestaurantsInfoCardProps) => {
       const newFavourites = favorites.filter((r) => r.placeId !== restaurant.placeId);
       setFavourites(newFavourites);
     },
@@ -36,8 +36,8 @@ export const FavouritesProvider = ({ children }: FavouritesContextProviderProps)
   );
 
   const value = useMemo(
-    () => ({ favorites, setFavourites, add, remove }),
-    [favorites, setFavourites, add, remove],
+    () => ({ favorites, setFavourites, addToFavourites, removeFromFavourites }),
+    [favorites, setFavourites, addToFavourites, removeFromFavourites],
   );
 
   return <FavouritesContext.Provider value={value}>{children}</FavouritesContext.Provider>;
