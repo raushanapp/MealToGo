@@ -6,6 +6,7 @@ interface SearchBarProps {
   onChangeSearch: (query: string) => void;
   searchPlaceholder?: string;
   onSubmitEditing?: () => void;
+  icon?: string;
 }
 
 const SearchBar = ({
@@ -13,6 +14,7 @@ const SearchBar = ({
   onChangeSearch,
   searchPlaceholder = 'Search',
   onSubmitEditing,
+  icon,
 }: SearchBarProps) => {
   return (
     <Searchbar
@@ -20,6 +22,7 @@ const SearchBar = ({
       onChangeText={onChangeSearch}
       value={searchQuery}
       onSubmitEditing={onSubmitEditing}
+      icon={icon}
     />
   );
 };

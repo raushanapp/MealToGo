@@ -17,18 +17,18 @@ const screens = [
     androidIcon: 'https://img.icons8.com/?size=100&id=86029&format=png&color=000000',
   },
   {
-    name: 'Settings',
-    component: SettingsScreen,
-    title: 'Settings',
-    iosIcon: 'gearshape',
-    androidIcon: 'https://img.icons8.com/?size=100&id=82535&format=png&color=000000',
-  },
-  {
     name: 'Map',
     component: MapScreen,
     title: 'Map',
     iosIcon: 'map',
     androidIcon: 'https://img.icons8.com/?size=100&id=86788&format=png&color=000000',
+  },
+  {
+    name: 'Settings',
+    component: SettingsScreen,
+    title: 'Settings',
+    iosIcon: 'gearshape',
+    androidIcon: 'https://img.icons8.com/?size=100&id=82535&format=png&color=000000',
   },
 ] as const;
 

@@ -1,6 +1,6 @@
 export interface Restaurant {
   businessStatus?: string;
-  geometry?: {
+  geometry: {
     location: {
       lat: number;
       lng: number;

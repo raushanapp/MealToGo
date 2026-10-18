@@ -7,14 +7,14 @@ import React, {
   type ReactNode,
   type SetStateAction,
 } from 'react';
-import { locationRequest } from './location.service';
+import { LocationCoordinates, locationRequest } from './location.service';
 export interface Location {
   lat: number;
   lng: number;
 }
 export interface LocationContextTypeValue {
-  location: Location | null;
-  setLocation: Dispatch<SetStateAction<Location | null>>;
+  location: LocationCoordinates | null;
+  setLocation: Dispatch<SetStateAction<LocationCoordinates | null>>;
   isLoading: boolean;
   error: Error | null;
   search: (keyword: string) => void;
@@ -26,7 +26,7 @@ interface LocationContextProviderProps {
 }
 const LocationContext = createContext<LocationContextTypeValue | null>(null);
 export const LocationContextProvider: React.FC<LocationContextProviderProps> = ({ children }) => {
-  const [location, setLocation] = useState<Location | null>(null);
+  const [location, setLocation] = useState<LocationCoordinates | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
   const [keyword, setKeyword] = useState<string>('San Francisco');
