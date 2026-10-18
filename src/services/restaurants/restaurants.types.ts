@@ -23,7 +23,8 @@ export interface Restaurant {
   openingHours?: {
     openNow?: boolean;
   };
-  photos?: PhotosProps[] | [];
+  photos?: PhotosProps[];
+  images: string[];
   placeId?: string;
   plusCode?: {
     compoundCode: string;

@@ -6,9 +6,14 @@ type RawRestaurantsResponse = (typeof mocks)[keyof typeof mocks];
 
 const restaurantsTransform = (result: RawRestaurantsResponse): RestaurantsResponse => {
   const mappedResults = result.results.map((restaurant) => {
-    const images = restaurant.photos.map(() => {
-      return mockImages[Math.floor(Math.random() * mockImages.length)];
-    });
+    const images = restaurant?.photos?.map(() => {
+      const image = mockImages[Math.floor(Math.random() * mockImages.length)];
+      if (!image) {
+        throw new Error('No mock images available');
+      }
+      return image;
+    }) ?? [];
+
     return {
       ...restaurant,
       images: images,
