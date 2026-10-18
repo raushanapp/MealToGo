@@ -45,6 +45,10 @@ export const RestaurantsScreen = ({ navigation }: Props) => {
 
   const [isToggled, setIsToggled] = useState<boolean>(false);
 
+  const onDetails = (restaurant: Restaurant) => {
+    navigation.navigate('RestaurantsDetailsScreen', { restaurant });
+  };
+
   return (
     <SafeArea>
       <Search onFavouriteToggled={() => setIsToggled(!isToggled)} isFavouriteToggled={isToggled} />
@@ -54,7 +58,7 @@ export const RestaurantsScreen = ({ navigation }: Props) => {
         </LoadingContainer>
       ) : (
         <>
-          {isToggled && <FavouritesBar favourites={favourites ?? []} />}
+          {isToggled && <FavouritesBar onNavigate={onDetails} favourites={favourites ?? []} />}
           <RestaurantsList
             contentContainerStyle={listContentStyle}
             data={restaurants ?? []}
