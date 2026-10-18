@@ -6,19 +6,22 @@ import { StatusBar, useColorScheme } from 'react-native';
 import { PaperProvider } from 'react-native-paper';
 import { ThemeProvider } from 'styled-components/native';
 import { Navigation } from '@/infrastructure/navigation/index';
+import { FavouritesProvider } from '@/services/favourites/favourites.context';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <>
       <ThemeProvider theme={theme}>
-        <LocationContextProvider>
-          <RestaurantsProvider>
-            <PaperProvider>
-              <Navigation />
-            </PaperProvider>
-          </RestaurantsProvider>
-        </LocationContextProvider>
+        <FavouritesProvider>
+          <LocationContextProvider>
+            <RestaurantsProvider>
+              <PaperProvider>
+                <Navigation />
+              </PaperProvider>
+            </RestaurantsProvider>
+          </LocationContextProvider>
+        </FavouritesProvider>
       </ThemeProvider>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
     </>

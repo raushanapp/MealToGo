@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/native';
-import SearchBar from '@/components/SearchBar';
+import SearchBar from '@/components/searchbar/SearchBar';
 import { useLocationContext } from '@/services/locations/location.context';
 const SearchContainer = styled.View`
   padding: ${(props) => props.theme.space[3]};

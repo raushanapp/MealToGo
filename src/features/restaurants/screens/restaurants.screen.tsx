@@ -2,6 +2,7 @@ import React from 'react';
 import { FlatList, Platform, TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useFavourites } from '@/services/favourites/favourites.context';
 import { ActivityIndicator, MD2Colors } from 'react-native-paper';
 import { Spacer } from '@/components/spacer/spacer.components';
 import { SafeArea } from '@/components/utility/safe.area.component';
@@ -34,6 +35,8 @@ const Loading = styled(ActivityIndicator)`
 export const RestaurantsScreen = ({ navigation }: Props) => {
   const { restaurants, isLoading: restaurantsLoading, error } = useRestaurantsContext();
   const { isLoading: locationLoading } = useLocationContext();
+  const { favorites } = useFavourites();
+  // console.log(favorites);
   const isLoading = restaurantsLoading || locationLoading;
   const insets = useSafeAreaInsets();
   const listContentStyle = {
