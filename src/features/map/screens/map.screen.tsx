@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocationContext } from '@/services/locations/location.context';
 import styled from 'styled-components/native';
-import MapView, { Marker, Callout } from 'react-native-maps';
+import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import { Search } from '@/features/map/components/search.component';
 import { useRestaurantsContext } from '@/services/restaurants/restaurants.context';
 import { MapCallout } from '@/features/map/components/map.callout.component';
@@ -17,7 +17,7 @@ const Map = styled(MapView)`
 `;
 
 export const MapScreen = ({ navigation }: Props) => {
-  const [latDelta, setLatDelta] = useState<number>(0);
+  const [latDelta, setLatDelta] = useState<number>(0.02);
   const { location } = useLocationContext();
   const { restaurants } = useRestaurantsContext();
   const { lat, lng, viewport } = location ?? {};
@@ -33,6 +33,7 @@ export const MapScreen = ({ navigation }: Props) => {
     <>
       <Search />
       <Map
+        provider={PROVIDER_GOOGLE}
         region={{
           latitude: lat ?? 0,
           longitude: lng ?? 0,
