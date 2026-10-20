@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "319723245498",
+    "project_id": "mealstogo-140c7",
+    "storage_bucket": "mealstogo-140c7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:319723245498:android:d28f89bb9f9ef6d97bd783",
+        "android_client_info": {
+          "package_name": "com.mealtogo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWFf4kyJ5Ba7kCA_RQ_fAtem5Q9BVjGdc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
