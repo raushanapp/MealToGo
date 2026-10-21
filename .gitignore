@@ -76,3 +76,9 @@ yarn-error.log
 
 # env
 .env
+
+# firebase / secrets
+google-services.json
+GoogleService-Info.plist
+.env.*
+!.env.example
