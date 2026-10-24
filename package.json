@@ -87,11 +87,5 @@
   },
   "engines": {
     "node": ">= 22.11.0"
-  },
-  "pnpm": {
-    "overrides": {
-      "zod": "4.6.6",
-      "@grpc/grpc-js": "1.13.6"
-    }
   }
 }
