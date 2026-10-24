@@ -2,8 +2,8 @@ import React from 'react';
 import { Spacer } from '@/components/spacer/spacer.components';
 import { Text } from '@/components/typography/text.component';
 import { SvgXml } from 'react-native-svg';
-import open from '../../../../assets/svg/open';
-import star from '../../../../assets/svg/star';
+import open from '@assets/svg/open';
+import star from '@assets/svg/star';
 import {
   ClosedIcons,
   Info,

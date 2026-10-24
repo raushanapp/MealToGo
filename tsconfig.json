@@ -19,7 +19,8 @@
     "allowJs": false,
     "skipLibCheck": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@assets/*": ["./assets/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "*.ts", "*.tsx", "src/**/*.d.ts"],
