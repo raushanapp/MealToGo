@@ -1,7 +1,6 @@
 import React from 'react';
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 import { AccountStackParamList } from '@/infrastructure/navigation/account.navigator.type';
-
 import { LoginScreen } from '@/features/account/screens/login.screen';
 import { RegisterScreen } from '@/features/account/screens/register.screen';
 import { AccountScreen } from '@/features/account/screens/account.screen';
@@ -13,7 +12,7 @@ export const AccountNavigator = () => {
     <AccountStack.Navigator
       screenOptions={{
         headerShown: false,
-        ...TransitionPresets.ModalPresentationIOS,
+        ...TransitionPresets,
       }}
     >
       <AccountStack.Screen name="Main" component={AccountScreen} />

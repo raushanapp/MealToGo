@@ -49,7 +49,7 @@ export const AuthenticationProvider = ({ children }: { children: ReactNode }) =>
     try {
       await loginRequest(email, password);
     } catch (e) {
-      setError(getAuthErrorMessage(e));
+      setError(getAuthErrorMessage(e?.toString()));
       setIsLoading(false);
     }
   }, []);
@@ -65,7 +65,7 @@ export const AuthenticationProvider = ({ children }: { children: ReactNode }) =>
       try {
         await registerRequest(email, password);
       } catch (e) {
-        setError(getAuthErrorMessage(e));
+        setError(getAuthErrorMessage(e?.toString()));
         setIsLoading(false);
       }
     },
@@ -77,7 +77,7 @@ export const AuthenticationProvider = ({ children }: { children: ReactNode }) =>
     try {
       await logoutRequest();
     } catch (e) {
-      setError(getAuthErrorMessage(e));
+      setError(getAuthErrorMessage(e?.toString()));
     }
   }, []);
 

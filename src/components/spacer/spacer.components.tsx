@@ -21,7 +21,7 @@ type SpacerSize = keyof typeof sizesVariant;
 interface SpacerProps {
   position?: SpacerPosition;
   sizes?: SpacerSize;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 type SpacerVariant = `${(typeof positionsVariant)[SpacerPosition]}: ${string};`;
