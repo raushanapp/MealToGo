@@ -1,15 +1,13 @@
 import React from 'react';
-import type { StackScreenProps } from '@react-navigation/stack';
 import {
   AccountBackground,
   AccountCover,
   AccountContainer,
   AuthButton,
+  Title,
 } from '@/features/account/components/account.styles';
 import { Spacer } from '@/components/spacer/spacer.components';
-import { AccountStackParamList } from '@/infrastructure/navigation/account.navigator.type';
-
-type props = StackScreenProps<AccountStackParamList, 'Main'>;
+import { AccountScreenProps } from '@/infrastructure/navigation/account.navigator.type';
 
 type AuthAction = {
   label: string;
@@ -30,10 +28,11 @@ const AUTH_ACTIONS: AuthAction[] = [
   },
 ];
 
-export const AccountScreen = ({ navigation }: props) => {
+export const AccountScreen = ({ navigation }: AccountScreenProps<'Main'>) => {
   return (
     <AccountBackground>
       <AccountCover />
+      <Title>Meals To Go</Title>
       <AccountContainer>
         {AUTH_ACTIONS?.map((action) => (
           <React.Fragment key={action.destination}>

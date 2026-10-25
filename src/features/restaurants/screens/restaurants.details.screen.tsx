@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import { List } from 'react-native-paper';
 import { ScrollView } from 'react-native';
 import { SafeArea } from '@/components/utility/safe.area.component';
-import type { StackScreenProps } from '@react-navigation/stack';
-import type { RestaurantsStackParamList } from '@/infrastructure/navigation/restaurants.navigators.type';
+import type { RestaurantsScreenProps } from '@/infrastructure/navigation/restaurants.navigators.type';
 import { RestaurantsInfoCard } from '@/features/restaurants/components/restaurants.info.card.components';
 
-type Props = StackScreenProps<RestaurantsStackParamList, 'RestaurantsDetailsScreen'>;
-
-export const RestaurantsDetailsScreen = ({ route }: Props) => {
+export const RestaurantsDetailsScreen = ({
+  route,
+}: RestaurantsScreenProps<'RestaurantsDetailsScreen'>) => {
   const [breakfastExpanded, setBreakfastExpanded] = useState<boolean>(false);
   const [lunchExpanded, setLunchExpanded] = useState<boolean>(false);
   const [dinnerExpanded, setDinnerExpanded] = useState<boolean>(false);
@@ -17,9 +16,7 @@ export const RestaurantsDetailsScreen = ({ route }: Props) => {
   const { restaurant } = route.params;
   return (
     <SafeArea>
-      <RestaurantsInfoCard
-        restaurant={restaurant}
-      />
+      <RestaurantsInfoCard restaurant={restaurant} />
       <ScrollView>
         <List.Accordion
           title="Breakfast"

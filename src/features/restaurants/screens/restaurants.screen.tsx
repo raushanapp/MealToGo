@@ -11,11 +11,8 @@ import { Search } from '@/features/restaurants/components/search.component';
 import { useLocationContext } from '@/services/locations/location.context';
 import { FavouritesBar } from '@/components/favourites/favourites.bar.component';
 import { useRestaurantsContext } from '@/services/restaurants/restaurants.context';
-import type { StackScreenProps } from '@react-navigation/stack';
-import { RestaurantsStackParamList } from '@/infrastructure/navigation/restaurants.navigators.type';
+import { RestaurantsScreenProps } from '@/infrastructure/navigation/restaurants.navigators.type';
 import { useFavourites } from '@/services/favourites/favourites.context';
-
-type Props = StackScreenProps<RestaurantsStackParamList, 'RestaurantMainScreen'>;
 
 const RestaurantsList = styled(FlatList<Restaurant>).attrs({
   showsVerticalScrollIndicator: false,
@@ -33,7 +30,9 @@ const Loading = styled(ActivityIndicator)`
   margin-left: -25px;
 `;
 
-export const RestaurantsScreen = ({ navigation }: Props) => {
+export const RestaurantsScreen = ({
+  navigation,
+}: RestaurantsScreenProps<'RestaurantMainScreen'>) => {
   const { restaurants, isLoading: restaurantsLoading, error } = useRestaurantsContext();
   const { isLoading: locationLoading } = useLocationContext();
   const { favourites } = useFavourites();
