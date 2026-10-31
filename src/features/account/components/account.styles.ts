@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 import { colors } from '@/infrastructure/theme/colors';
 import { Button, TextInput } from 'react-native-paper';
 import { Text } from '@/components/typography/text.component';
+import LottieView from 'lottie-react-native';
 
 export const AccountBackground = styled.ImageBackground.attrs({
   source: homeBackground,
@@ -47,4 +48,18 @@ export const Errorcontainer = styled.View`
   align-self: center;
   margin-top: ${(props) => props.theme.space[2]};
   margin-bottom: ${(props) => props.theme.space[2]};
+`;
+
+export const AnimationWrapper = styled.View`
+  width: 100%;
+  height: 35%;
+  position: absolute;
+  top: 25px;
+  padding: ${(props) => props.theme.space[2]};
+`;
+
+export const LottieViewWrapper = styled(LottieView)`
+  width: 100%;
+  height: 100%;
+  align-self: center;
 `;

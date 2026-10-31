@@ -36,6 +36,30 @@ PODS:
   - hermes-engine (250829098.0.16):
     - hermes-engine/Pre-built (= 250829098.0.16)
   - hermes-engine/Pre-built (250829098.0.16)
+  - lottie-ios (4.6.0)
+  - lottie-react-native (7.5.0):
+    - hermes-engine
+    - lottie-ios (= 4.6.0)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-bridging
+    - React-Core
+    - React-Core-prebuilt
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/core
+    - ReactNativeDependencies
+    - Yoga
   - RCT-Folly (2024.11.18.00):
     - RCT-Folly/Default (= 2024.11.18.00)
     - ReactNativeDependencies
@@ -1384,7 +1408,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - react-native-vector-icons-material-design-icons (13.1.4)
+  - react-native-vector-icons-material-design-icons (13.1.5)
   - react-native-webview (14.0.1):
     - hermes-engine
     - RCTRequired
@@ -1832,7 +1856,7 @@ PODS:
     - ReactNativeDependencies
     - RNFBApp
     - Yoga
-  - RNGestureHandler (3.3.0):
+  - RNGestureHandler (3.4.0):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -1955,7 +1979,7 @@ PODS:
     - ReactNativeDependencies
     - RNWorklets
     - Yoga
-  - RNScreens (4.29.0):
+  - RNScreens (4.30.0):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -1977,9 +2001,9 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
-    - RNScreens/common (= 4.29.0)
+    - RNScreens/common (= 4.30.0)
     - Yoga
-  - RNScreens/common (4.29.0):
+  - RNScreens/common (4.30.0):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -2002,7 +2026,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - RNSVG (15.15.5):
+  - RNSVG (15.16.0):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -2023,9 +2047,9 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
-    - RNSVG/common (= 15.15.5)
+    - RNSVG/common (= 15.16.0)
     - Yoga
-  - RNSVG/common (15.15.5):
+  - RNSVG/common (15.16.0):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -2132,6 +2156,7 @@ DEPENDENCIES:
   - fmt (from `build/rndeps-facades/fmt`)
   - glog (from `build/rndeps-facades/glog`)
   - hermes-engine (from `../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec`)
+  - lottie-react-native (from `../node_modules/lottie-react-native`)
   - RCT-Folly (from `build/rndeps-facades/RCT-Folly`)
   - RCTDeprecation (from `build/rncore-facades/RCTDeprecation`)
   - RCTRequired (from `build/rncore-facades/RCTRequired`)
@@ -2224,6 +2249,10 @@ DEPENDENCIES:
   - SocketRocket (from `build/rndeps-facades/SocketRocket`)
   - Yoga (from `build/rncore-facades/Yoga`)
 
+SPEC REPOS:
+  trunk:
+    - lottie-ios
+
 EXTERNAL SOURCES:
   AsyncStorage:
     :path: "../node_modules/@react-native-async-storage/async-storage"
@@ -2242,6 +2271,8 @@ EXTERNAL SOURCES:
   hermes-engine:
     :podspec: "../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec"
     :tag: hermes-v250829098.0.16
+  lottie-react-native:
+    :path: "../node_modules/lottie-react-native"
   RCT-Folly:
     :path: build/rndeps-facades/RCT-Folly
   RCTDeprecation:
@@ -2432,6 +2463,8 @@ SPEC CHECKSUMS:
   fmt: ba0886e864ebb21d14c98b2e12e164b8002f5b93
   glog: 3cf7cb46f743c4bc758ae3e6d9c15bd1b4cfd6d4
   hermes-engine: 6a26e94b4a974cbadc751eed9caa12624c38f226
+  lottie-ios: 8f959969761e9c45d70353667d00af0e5b9cadb3
+  lottie-react-native: 7ed903be77003ea48bfc4088325062c0fd017639
   RCT-Folly: 82921e585c0400eda46fac1068297aa9dfb035e4
   RCTDeprecation: 6d66040b74f4be203495adda55b49c1a25190291
   RCTRequired: ebf172e0b04196922ba4640458f9926c1bb34012
@@ -2474,7 +2507,7 @@ SPEC CHECKSUMS:
   React-mutationobservernativemodule: 44fd38a55451f25ea5a2c74e74f18bf08f94d40a
   react-native-maps: 98efcff5f30ce836b9a110b37b6920b07bd8099f
   react-native-safe-area-context: ffc410c82563bbd543724530896a52bce3a3cbd8
-  react-native-vector-icons-material-design-icons: 9e98e87947156bfe95135fb523b62821486044e3
+  react-native-vector-icons-material-design-icons: 8d696a2371e2bd5bb5254370c33b5ffbc503e840
   react-native-webview: 536ae64a11703208850c306e9fa013ee87205767
   React-NativeModulesApple: 22b2f3e1538ceb1aab1ab182ccb0666ea2ec36ad
   React-networking: b007a80590c11f2ce62a4967386c594a434a83cb
@@ -2515,10 +2548,10 @@ SPEC CHECKSUMS:
   RNCMaskedView: 2285fe9d39e487339dd40cda1eb15e39049be071
   RNFBApp: 4ee9b422bc22dcf1d7351e3ed13c04d27b24f3ae
   RNFBAuth: bcadc53eee462dd8b17dbf8670a3e9c55adc97fe
-  RNGestureHandler: ccdfb6596e64fa44e21173364ac57a7374e5bb79
+  RNGestureHandler: 1d2dbd83c97892e717fdac6e8684f278bf3b951c
   RNReanimated: 2678766e9d06b650ebfe0fb886bfece62d4d1dcc
-  RNScreens: fb8eadd0d0cceab4609b4ebdfd9a98cde1a25fa9
-  RNSVG: 4da2e0a724c48a841e0dbfbdc7db39286c050b61
+  RNScreens: 4cd1301cb116988390a7cb133b437d71771c60e1
+  RNSVG: ea960a71afc1707bd14dead3ec578763321f7096
   RNWorklets: 941265f848d4f2a906a0ed4ba64e6671cf54d34e
   SocketRocket: 37aec555668fb852ec12e3c0de59a86ca58f0871
   Yoga: d1c536142c5ff8ec8cd856ab2a7c227a1d875c8e

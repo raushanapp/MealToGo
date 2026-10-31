@@ -5,9 +5,12 @@ import {
   AccountContainer,
   AuthButton,
   Title,
+  AnimationWrapper,
+  LottieViewWrapper,
 } from '@/features/account/components/account.styles';
 import { Spacer } from '@/components/spacer/spacer.components';
 import { AccountScreenProps } from '@/infrastructure/navigation/account.navigator.type';
+import Watermelon from '@assets/watermelon.json';
 
 type AuthAction = {
   label: string;
@@ -32,6 +35,9 @@ export const AccountScreen = ({ navigation }: AccountScreenProps<'Main'>) => {
   return (
     <AccountBackground>
       <AccountCover />
+      <AnimationWrapper>
+        <LottieViewWrapper key="animation" source={Watermelon} autoPlay loop resizeMode="cover" />
+      </AnimationWrapper>
       <Title>Meals To Go</Title>
       <AccountContainer>
         {AUTH_ACTIONS?.map((action) => (
