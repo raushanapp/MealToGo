@@ -9,6 +9,7 @@ import React, {
 } from 'react';
 import { createAsyncStorage } from '@react-native-async-storage/async-storage';
 import type { Restaurant } from '../restaurants/restaurants.types';
+import { useAuthentication } from '../authentication/authentication.context';
 
 interface FavouritesProviderValueProps {
   favourites: Restaurant[];
@@ -23,37 +24,49 @@ interface FavouritesContextProviderProps {
 }
 
 const storage = createAsyncStorage('app-favourites');
-const STORAGE_KEY = 'favourites';
+const STORAGE_KEY = '@favourites';
 
 export const FavouritesContext = createContext<FavouritesProviderValueProps | null>(null);
 
 export const FavouritesProvider = ({ children }: FavouritesContextProviderProps) => {
+  const { user } = useAuthentication();
   // Keyed by placeId for O(1) lookup/add/remove; Map keeps insertion order.
   const [favouritesMap, setFavouritesMap] = useState<Map<string, Restaurant>>(() => new Map());
-  const [isHydrated, setIsHydrated] = useState<boolean>(false);
+  const [hydratedUid, setHydratedUid] = useState<string | null>(null);
   const [error, setError] = useState<Error | null>(null);
+  const uid = user?.uid ?? null;
 
+  // Load this user's favourites whenever the signed-in user changes.
   useEffect(() => {
     let cancelled = false;
+    setFavouritesMap(new Map());
+    setHydratedUid(null);
+    if (!uid) {
+      return;
+    }
     const loadFavourites = async () => {
       try {
-        const stored = await storage.getItem(STORAGE_KEY);
-        if (!stored || cancelled) {
+        const stored = await storage.getItem(`${STORAGE_KEY}:${uid}`);
+        if (cancelled) {
           return;
         }
-        const parsed: Restaurant[] = JSON.parse(stored);
-        // Merge so favourites added before hydration finished are not lost.
-        setFavouritesMap((prev) => {
-          const next = new Map<string, Restaurant>();
-          parsed.forEach((r) => r.placeId && next.set(r.placeId, r));
-          prev.forEach((r, id) => next.set(id, r));
-          return next;
-        });
+        if (stored) {
+          const parsed: Restaurant[] = JSON.parse(stored);
+          // Merge so favourites added before hydration finished are not lost.
+          setFavouritesMap((prev) => {
+            const next = new Map<string, Restaurant>();
+            parsed.forEach((r) => r.placeId && next.set(r.placeId, r));
+            prev.forEach((r, id) => next.set(id, r));
+            return next;
+          });
+        }
       } catch (e) {
-        setError(e as Error);
+        if (!cancelled) {
+          setError(e as Error);
+        }
       } finally {
         if (!cancelled) {
-          setIsHydrated(true);
+          setHydratedUid(uid);
         }
       }
     };
@@ -61,16 +74,16 @@ export const FavouritesProvider = ({ children }: FavouritesContextProviderProps)
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [uid]);
 
   useEffect(() => {
-    if (!isHydrated) {
+    if (!uid || hydratedUid !== uid) {
       return;
     }
     storage
-      .setItem(STORAGE_KEY, JSON.stringify(Array.from(favouritesMap.values())))
+      .setItem(`${STORAGE_KEY}:${uid}`, JSON.stringify(Array.from(favouritesMap.values())))
       .catch((e) => setError(e as Error));
-  }, [favouritesMap, isHydrated]);
+  }, [favouritesMap, hydratedUid, uid]);
 
   const addToFavourites = useCallback((restaurant: Restaurant) => {
     const id = restaurant.placeId;

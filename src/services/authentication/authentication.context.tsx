@@ -73,11 +73,14 @@ export const AuthenticationProvider = ({ children }: { children: ReactNode }) =>
   );
 
   const onLogout = useCallback(async () => {
+    setIsLoading(true);
     setError(null);
     try {
       await logoutRequest();
+      setIsLoading(false);
     } catch (e) {
       setError(getAuthErrorMessage(e?.toString()));
+      setIsLoading(false);
     }
   }, []);
 
