@@ -24,12 +24,12 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MealToGo/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = MealToGo/Info.plist; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = MealToGo/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		15244593C1BB4EFC8150E7E2 /* Lato_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Lato_Regular.ttf; path = ../assets/fonts/Lato_Regular.ttf; sourceTree = "<group>"; };
+		15244593C1BB4EFC8150E7E2 /* Lato_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 531711044249; includeInIndex = 0; lastKnownFileType = unknown; name = Lato_Regular.ttf; path = ../assets/fonts/Lato_Regular.ttf; sourceTree = "<group>"; };
 		260FF22AE1D813E46DBB9B96 /* Pods-MealToGo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealToGo.release.xcconfig"; path = "Target Support Files/Pods-MealToGo/Pods-MealToGo.release.xcconfig"; sourceTree = "<group>"; };
 		48BA82117C6320E75CD8FADF /* Pods_MealToGo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MealToGo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7419C0B7558654D28BEBE3CC /* Pods-MealToGo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealToGo.debug.xcconfig"; path = "Target Support Files/Pods-MealToGo/Pods-MealToGo.debug.xcconfig"; sourceTree = "<group>"; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = MealToGo/AppDelegate.swift; sourceTree = "<group>"; };
-		79DB1FE43EF04C23B7DA59B7 /* Oswald_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Oswald_Regular.ttf; path = ../assets/fonts/Oswald_Regular.ttf; sourceTree = "<group>"; };
+		79DB1FE43EF04C23B7DA59B7 /* Oswald_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 531711044249; includeInIndex = 0; lastKnownFileType = unknown; name = Oswald_Regular.ttf; path = ../assets/fonts/Oswald_Regular.ttf; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = MealToGo/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A1B2C3D4E5F60718293A4B5D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "MealToGo/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B1B2C3D4E5F60718293A4B02 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = MealToGo/SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,7 +109,6 @@
 				15244593C1BB4EFC8150E7E2 /* Lato_Regular.ttf */,
 			);
 			name = Resources;
-			path = "";
 			sourceTree = "<group>";
 		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
@@ -384,6 +383,7 @@
 				CLANG_ENABLE_EXPLICIT_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H76L7WK3KJ;
 				INFOPLIST_FILE = MealToGo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (

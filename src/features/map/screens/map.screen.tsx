@@ -7,6 +7,7 @@ import { useRestaurantsContext } from '@/services/restaurants/restaurants.contex
 import { MapCallout } from '@/features/map/components/map.callout.component';
 import type { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { BottomNavigationTabsParamList } from '@/infrastructure/navigation/bottom.navigation.tabs.type';
+import { Platform } from 'react-native';
 
 type Props = {
   navigation: BottomTabNavigationProp<BottomNavigationTabsParamList, 'MapScreen'>;
@@ -33,7 +34,7 @@ export const MapScreen = ({ navigation }: Props) => {
     <>
       <Search />
       <Map
-        provider={PROVIDER_GOOGLE}
+        provider={Platform.OS === 'android' ? PROVIDER_GOOGLE : undefined}
         region={{
           latitude: lat ?? 0,
           longitude: lng ?? 0,
