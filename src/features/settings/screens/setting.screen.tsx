@@ -14,7 +14,7 @@ const LogoutButton = styled(Button)`
   padding: ${({ theme }) => theme.space[2]};
 `;
 
-export const SettingsScreen = () => {
+export const SettingsMainScreen = () => {
   const { onLogout, isLoading } = useAuthentication();
   const handleLogout = () => {
     onLogout();

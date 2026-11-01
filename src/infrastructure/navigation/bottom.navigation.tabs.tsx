@@ -2,9 +2,9 @@ import React from 'react';
 import { Platform } from 'react-native';
 import { MapScreen } from '@/features/map/screens/map.screen';
 import { RestaurantsNavigator } from '@/infrastructure/navigation/restaurants.navigator';
-import { SettingsScreen } from '@/features/settings/screens/setting.screen';
 import { createNativeBottomTabNavigator } from '@react-navigation/bottom-tabs/unstable';
 import { BottomNavigationTabsParamList } from './bottom.navigation.tabs.type';
+import { SettingsNavigator } from '@/infrastructure/navigation/settings.navigator';
 
 const BottomTab = createNativeBottomTabNavigator<BottomNavigationTabsParamList>();
 
@@ -24,8 +24,8 @@ const screens = [
     androidIcon: 'https://img.icons8.com/?size=100&id=86788&format=png&color=000000',
   },
   {
-    name: 'Settings',
-    component: SettingsScreen,
+    name: 'SettingsMainScreen',
+    component: SettingsNavigator,
     title: 'Settings',
     iosIcon: 'gearshape',
     androidIcon: 'https://img.icons8.com/?size=100&id=82535&format=png&color=000000',
