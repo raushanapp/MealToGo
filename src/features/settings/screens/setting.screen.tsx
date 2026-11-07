@@ -7,7 +7,7 @@ import { useAuthentication } from '@/services/authentication/authentication.cont
 import { Spacer } from '@/components/spacer/spacer.components';
 import { SettingsScreenProps } from '@/infrastructure/navigation/settings.navigator.type';
 
-const SettingItem = styled(List.Item)`
+const SettingItemList = styled(List.Item)`
   padding: ${({ theme }) => theme.space[3]};
 `;
 const AvatarContainer = styled.View`
@@ -31,13 +31,13 @@ export const SettingsMainScreen = ({ navigation }: SettingsScreenProps<'Settings
         </Spacer>
       </AvatarContainer>
       <List.Section>
-        <SettingItem
+        <SettingItemList
           title="Favorites"
           description="View your favourites"
           left={(props) => <List.Icon {...props} color="black" icon="heart" />}
           onPress={() => navigation.navigate('Favourites')}
         />
-        <SettingItem
+        <SettingItemList
           title="Logout"
           left={(props) => <List.Icon {...props} color="black" icon="door" />}
           onPress={handleLogout}
