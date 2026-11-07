@@ -24,9 +24,9 @@ const screens = [
     androidIcon: 'https://img.icons8.com/?size=100&id=86788&format=png&color=000000',
   },
   {
-    name: 'SettingsMainScreen',
+    name: 'Setting',
     component: SettingsNavigator,
-    title: 'Settings',
+    title: 'Setting',
     iosIcon: 'gearshape',
     androidIcon: 'https://img.icons8.com/?size=100&id=82535&format=png&color=000000',
   },

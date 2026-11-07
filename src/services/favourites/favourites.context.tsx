@@ -17,6 +17,7 @@ interface FavouritesProviderValueProps {
   addToFavourites: (restaurant: Restaurant) => void;
   removeFromFavourites: (restaurant: Restaurant) => void;
   error: Error | null;
+  isLoading: boolean;
 }
 
 interface FavouritesContextProviderProps {
@@ -33,6 +34,7 @@ export const FavouritesProvider = ({ children }: FavouritesContextProviderProps)
   // Keyed by placeId for O(1) lookup/add/remove; Map keeps insertion order.
   const [favouritesMap, setFavouritesMap] = useState<Map<string, Restaurant>>(() => new Map());
   const [hydratedUid, setHydratedUid] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
   const uid = user?.uid ?? null;
 
@@ -44,6 +46,7 @@ export const FavouritesProvider = ({ children }: FavouritesContextProviderProps)
     if (!uid) {
       return;
     }
+    setIsLoading(true);
     const loadFavourites = async () => {
       try {
         const stored = await storage.getItem(`${STORAGE_KEY}:${uid}`);
@@ -67,6 +70,7 @@ export const FavouritesProvider = ({ children }: FavouritesContextProviderProps)
       } finally {
         if (!cancelled) {
           setHydratedUid(uid);
+          setIsLoading(false);
         }
       }
     };
@@ -123,8 +127,8 @@ export const FavouritesProvider = ({ children }: FavouritesContextProviderProps)
   const favourites = useMemo(() => Array.from(favouritesMap.values()), [favouritesMap]);
 
   const value = useMemo(
-    () => ({ favourites, isFavourite, addToFavourites, removeFromFavourites, error }),
-    [favourites, isFavourite, addToFavourites, removeFromFavourites, error],
+    () => ({ favourites, isFavourite, addToFavourites, removeFromFavourites, error, isLoading }),
+    [favourites, isFavourite, addToFavourites, removeFromFavourites, error, isLoading],
   );
 
   return <FavouritesContext.Provider value={value}>{children}</FavouritesContext.Provider>;

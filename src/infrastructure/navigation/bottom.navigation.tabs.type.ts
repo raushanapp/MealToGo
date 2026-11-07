@@ -3,6 +3,6 @@ import type { RestaurantsStackParamList } from './restaurants.navigators.type';
 
 export type BottomNavigationTabsParamList = {
   RestaurantMainScreen: NavigatorScreenParams<RestaurantsStackParamList> | undefined;
-  SettingsMainScreen: undefined;
+  Setting: undefined;
   MapScreen: undefined;
 };

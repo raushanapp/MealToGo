@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FlatList, Platform, TouchableOpacity } from 'react-native';
+import { Platform, TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ActivityIndicator, MD2Colors } from 'react-native-paper';
@@ -13,12 +13,7 @@ import { FavouritesBar } from '@/components/favourites/favourites.bar.component'
 import { useRestaurantsContext } from '@/services/restaurants/restaurants.context';
 import { RestaurantsScreenProps } from '@/infrastructure/navigation/restaurants.navigators.type';
 import { useFavourites } from '@/services/favourites/favourites.context';
-
-const RestaurantsList = styled(FlatList<Restaurant>).attrs({
-  showsVerticalScrollIndicator: false,
-})`
-  padding: ${(props) => props.theme.space[3]};
-`;
+import { RestaurantsList } from '@/features/restaurants/components/restaurant-list.styles';
 
 const LoadingContainer = styled.View`
   position: absolute;
