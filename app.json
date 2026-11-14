@@ -2,5 +2,23 @@
   "name": "MealToGo",
   "displayName": "MealToGo",
   "version": "0.0.1",
-  "orientation": "portrait"
+  "orientation": "portrait",
+  "splash": {
+    "image": "./assets/splash.png",
+    "resizeMode": "cover",
+    "backgroundColor": "#FFF4E3"
+  },
+  "updates": {
+    "fallbackToCacheTimeout": 0
+  },
+  "assetBundlePatterns": ["**/*"],
+  "ios": {
+    "supportsTablet": true
+  },
+  "android": {
+    "adaptiveIcon": {
+      "foregroundImage": "./assets/adaptive-icon.png",
+      "backgroundColor": "#FFF4E3"
+    }
+  }
 }
